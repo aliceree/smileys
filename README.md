@@ -1,4 +1,2 @@
-# keyboard-characters
-didactic game
-
-pracujeme na tom
+# special smilecters
+work in progress
