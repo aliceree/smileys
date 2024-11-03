@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<title>Cut it short!</title>
+    <link rel="stylesheet" type="text/css" href="cutitshort.css">
+    <style>
+        header {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cut it short!</h1>
+        <nav>
+            <a href="shortcuts.html">shortcuts</a>
+            <a href="game.html"><strong>game</strong></a>
+            <a href="scoreboard.html">scoreboard</a>
+        </nav>
+    </header>
+    <main>
+        <label for="answer">Zadej <em>:-)<em></label>
+        <input type="text" name="answer" id="answer" />
+    </main>
+    <script>
+        const questions = [':-)', 'xx', 'xD', 'O_o'];
+        
+        document.querySelector('input[name=answer]').addEventListener('input', (event) => {
+            const newVal = event.target.value;
+           if (questions.includes(newVal)) {
+            alert('trefa')
+           }
+
+        }); 
+        // pokud je celý smajlík správně, tak to chválí
+    </script>
+</body>
+</html>
