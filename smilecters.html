@@ -29,26 +29,23 @@
     </main>
     <script>
 const questions = [':-)', '#_$', ';+/', '@_€', '<:]', ';}'];
-let currentQuestionIndex = 0; // index aktuálního smajlíka
+let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
 
-document.querySelector('label[for=answer]').textContent = `${questions[currentQuestionIndex]}`; // nastaví prvního smajlíka
+document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // nastaví náhodného smajlíka jako první zadání
 
 document.querySelector('input[name=answer]').addEventListener('input', (event) => {
     const newVal = event.target.value;
-    if (newVal === questions[currentQuestionIndex]) {
-        event.target.classList.add('correct'); // přidá třídu .correct, aby se správná odpověď zbarvila do růžova
+    if (newVal === currentQuestion) {
+        
+        event.target.classList.add('correct'); // přidá třídu .correct, aby se text zbarvil do růžova
 
         setTimeout(() => {
-            event.target.value = ''; // vymaže odpověď
-            event.target.classList.remove('correct'); // odstraní třídu .correct (odstraní růžovou)
+            event.target.value = ''; // vymaže správnou odpověď
+            event.target.classList.remove('correct'); // odstraní třídu .correct (vymaže růžovou)
 
-            currentQuestionIndex++; // posune se na dalšího smajlíka
-            if (currentQuestionIndex < questions.length) { // aktualizuje zadání na dalšího smajlíka
-                document.querySelector('label[for=answer]').textContent = `${questions[currentQuestionIndex]}`;
-            } else {
-                // Když už nejsou další smajlíci, zobrazí zprávu o dokončení
-                document.querySelector('label[for=answer]').textContent = 'Hotovo! Všechny smajlíky jsou zadány.';
-            }
+            currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // vybere dalšího náhodného smajlíka
+            
+            document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // aktualizuje zadání na nového náhodného smajlíka
         }, 1000); // 1000 milisekund = 1 sekunda
     }
 });
