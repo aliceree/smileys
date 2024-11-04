@@ -2,11 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-	<title>Cut it short!</title>
-    <link rel="stylesheet" type="text/css" href="cutitshort.css">
+	<title>Special Smilecters</title>
+    <link rel="stylesheet" type="text/css" href="smilecters.css">
     <style>
         header {
             margin-bottom: 2rem;
+        }
+
+        .correct {
+            color: rgb(255, 0, 244);
         }
     </style>
 </head>
@@ -20,19 +24,23 @@
         </nav>
     </header>
     <main>
-        <label for="answer">Zadej ...</label>
+        <label for="answer">Zadej :-)</label>
         <input type="text" name="answer"/>
     </main>
     <script>
-        const questions = [':-)', '#_$', ';+/', '@_€', '<:]', ';}'];
-        
-        document.querySelector('input[name=answer]').addEventListener('input', (event) => {
-            const newVal = event.target.value;
-           if (questions.includes(newVal)) {
-            alert('trefa')
-           }
+const questions = [':-)', 'xx', 'xD', 'O_o'];
 
-        }); 
+document.querySelector('input[name=answer]').addEventListener('input', (event) => {
+    const newVal = event.target.value;
+    if (questions.includes(newVal)) {
+        event.target.classList.add('correct'); // přidá třídu .correct, aby se odpověď zbarvila do růžova
+
+        setTimeout(() => { // po 1 s vymaže hodnotu pole a odstraní třídu .correct
+            event.target.value = '';
+            event.target.classList.remove('correct');
+        }, 1000);
+    }
+});
     </script>
 </body>
 </html>
