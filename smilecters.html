@@ -24,21 +24,32 @@
         </nav>
     </header>
     <main>
-        <label for="answer">Zadej :-)</label>
+        <label for="answer"></label>
         <input type="text" name="answer"/>
     </main>
     <script>
-const questions = [':-)', 'xx', 'xD', 'O_o'];
+const questions = [':-)', '#_$', ';+/', '@_€', '<:]', ';}'];
+let currentQuestionIndex = 0; // index aktuálního smajlíka
+
+document.querySelector('label[for=answer]').textContent = `${questions[currentQuestionIndex]}`; // nastaví prvního smajlíka
 
 document.querySelector('input[name=answer]').addEventListener('input', (event) => {
     const newVal = event.target.value;
-    if (questions.includes(newVal)) {
-        event.target.classList.add('correct'); // přidá třídu .correct, aby se odpověď zbarvila do růžova
+    if (newVal === questions[currentQuestionIndex]) {
+        event.target.classList.add('correct'); // přidá třídu .correct, aby se správná odpověď zbarvila do růžova
 
-        setTimeout(() => { // po 1 s vymaže hodnotu pole a odstraní třídu .correct
-            event.target.value = '';
-            event.target.classList.remove('correct');
-        }, 1000);
+        setTimeout(() => {
+            event.target.value = ''; // vymaže odpověď
+            event.target.classList.remove('correct'); // odstraní třídu .correct (odstraní růžovou)
+
+            currentQuestionIndex++; // posune se na dalšího smajlíka
+            if (currentQuestionIndex < questions.length) { // aktualizuje zadání na dalšího smajlíka
+                document.querySelector('label[for=answer]').textContent = `${questions[currentQuestionIndex]}`;
+            } else {
+                // Když už nejsou další smajlíci, zobrazí zprávu o dokončení
+                document.querySelector('label[for=answer]').textContent = 'Hotovo! Všechny smajlíky jsou zadány.';
+            }
+        }, 1000); // 1000 milisekund = 1 sekunda
     }
 });
     </script>
