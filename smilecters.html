@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
 	<title>Special Smilecters</title>
-    <link rel="stylesheet" type="text/css" href="smilecters.css">
     <style>
         header {
             margin-bottom: 2rem;
@@ -12,14 +11,78 @@
         .correct {
             color: rgb(255, 0, 244);
         }
+
+        .container {
+            text-align: center;
+        }
+
+        body {
+            font-family: 'Courier New', monospace; /* font pro celý web */
+            background-color: #000000; /* pozadí pro celý web */
+            color: rgb(255, 0, 244); /* barva textu pro celý web */
+            margin: 0;
+            padding: 0;
+            display: flex; /* aktivuje možnost upořádat obsah uvnitř prvku */
+            align-items: center; /* zarovná obsah vertikálně na střed */
+            justify-content: center; /* zarovná obsah horizontálně na střed */
+            min-height: 100vh; /* nastaví 100 % výšky na výšku zařízení */
+        }
+
+        nav {
+            display: flex;
+            gap: 10px; /* mezera mezi navigačními odkazy */
+        }
+
+        nav a {
+            text-decoration: none; /* odstraní podtržení odkazů */
+            color: rgb(255, 0, 244); /* barva textu odkazu */
+            font-size: 2em;
+            padding: 10px 20px;
+            border: 2px solid rgb(255, 0, 244); /* rámeček kolem odkazu */
+            border-radius: 5px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        nav a:hover { /* efekt při najetí myší na odkaz */
+            color: rgb(255, 255, 255); /* změní barvu textu na bílou */
+            border-color: rgb(255, 255, 255); /* změní barvu rámečku na bílou */
+        }
+
+        h1 { /* styl pro hlavní nadpis */
+            font-size: 3em;
+            font-weight: normal;
+            margin-bottom: 30px;
+            color: rgb(255, 0, 244);
+            text-align: center;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #000000;
+            width: 100%;
+        }
+
+        footer img {
+            height: 30px; /* Nastavíme výšku obrázku */
+            vertical-align: middle;
+        }
+
+        footer p {
+            color: #ffffff;
+            display: inline;
+            margin-left: 10px; /* odstup mezi obrázkem a textem */
+        }
     </style>
 </head>
 <body>
+    <div class="container"> <!-- díky tomuto mohu s pomocí CSS vše zarovnat na střed -->
     <header>
         <h1>Special Smilecters</h1>
         <nav>
             <a href="shortcuts.html">shortcuts</a>
-            <a href="game.html"><strong>game</strong></a>
+            <a href="game.html">game</a>
             <a href="scoreboard.html">scoreboard</a>
         </nav>
     </header>
@@ -28,27 +91,35 @@
         <input type="text" name="answer"/>
     </main>
     <script>
-const questions = [':-)', '#_$', ';+/', '@_€', '<:]', ';}'];
-let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
+        const questions = [':-)', '#_$', ';+/', '@_€', '<:]', ';}']; // nepřepsatelná hodnota pro 'questions'
+        let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
 
-document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // nastaví náhodného smajlíka jako první zadání
+        document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // nastaví náhodného smajlíka jako první zadání
 
-document.querySelector('input[name=answer]').addEventListener('input', (event) => {
-    const newVal = event.target.value;
-    if (newVal === currentQuestion) {
-        
-        event.target.classList.add('correct'); // přidá třídu .correct, aby se text zbarvil do růžova
+        document.addEventListener('DOMContentLoaded', () => { // DOMContentLoaded znaměná, že se následující kód spustí, až po úplném načtení HTML dokumentu
+            document.querySelector('input[name=answer]').focus(); // při načtení stránky nastaví fokus (kurzor) na vstupní pole
+        });
 
-        setTimeout(() => {
-            event.target.value = ''; // vymaže správnou odpověď
-            event.target.classList.remove('correct'); // odstraní třídu .correct (vymaže růžovou)
+        document.querySelector('input[name=answer]').addEventListener('input', (event) => { // vyhledá 'input' s atributem name=answer a poslouchá, co uživatel napíše
+            const newVal = event.target.value;
+            if (newVal === currentQuestion) { //srovnává zda se zadaná hodnota rovná s aktuálním smajlíkem
+                
+                event.target.classList.add('correct'); // přidá třídu .correct, aby se text zbarvil do růžova
 
-            currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // vybere dalšího náhodného smajlíka
-            
-            document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // aktualizuje zadání na nového náhodného smajlíka
-        }, 1000); // 1000 milisekund = 1 sekunda
-    }
-});
+                setTimeout(() => {
+                    event.target.value = ''; // vymaže správnou odpověď
+                    event.target.classList.remove('correct'); // odstraní třídu .correct (vymaže růžovou)
+
+                    currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // vybere dalšího náhodného smajlíka
+                    
+                    document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // aktualizuje zadání na nového náhodného smajlíka
+                }, 1000); // 1000 milisekund = 1 sekunda
+            }
+        });
     </script>
+<footer>
+    <img src="CC.png" alt="CC BY-NC-SA">
+    <p>Alice Ree Borovičková</p>
+</footer>
 </body>
 </html>
