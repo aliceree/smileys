@@ -3,74 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Special Smilecters</title>
-    <style>
-        body {
-            font-family: 'Courier New', monospace; /* font pro celý web */
-            background-color: #000000; /* pozadí pro celý web */
-            color: rgb(255, 0, 244); /* barva textu pro celý web */
-            margin: 0;
-            padding: 0;
-            display: flex; /* aktivuje flexbox */
-            flex-direction: column; /* vertikální uspořádání prvků */
-            min-height: 100vh; /* nastaví výšku na 100 % viditelné části obrazovky */
-        }
-
-        .container {
-            text-align: center;
-            flex: 1; /* Umožní, aby se hlavní obsah roztáhl a byl zarovnán na střed */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Vertikální zarovnání obsahu na střed */
-            align-items: center; /* Horizontální zarovnání obsahu na střed */
-        }
-
-        nav {
-            display: flex;
-            gap: 20px; /* mezera mezi navigačními odkazy */
-        }
-
-        nav a {
-            text-decoration: none;
-            color: rgb(255, 0, 244);
-            font-size: 2em;
-            padding: 10px 20px;
-            border: 2px solid rgb(255, 0, 244);
-            border-radius: 5px;
-            transition: color 0.3s, border-color 0.3s;
-        }
-
-        nav a:hover {
-            color: rgb(255, 255, 255);
-            border-color: rgb(255, 255, 255);
-        }
-
-        h1 {
-            font-size: 3em;
-            font-weight: normal;
-            margin-bottom: 30px;
-            color: rgb(255, 0, 244);
-            text-align: center;
-        }
-
-        footer {
-            margin-top: auto;
-            padding: 10px;
-            text-align: center;
-            background-color: #000000;
-            width: 100%;
-        }
-
-        footer img {
-            height: 30px;
-            vertical-align: middle;
-        }
-
-        footer p {
-            color: #ffffff;
-            display: inline;
-            margin-left: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="smilecters.css">
 </head>
 <body>
     <div class="container">
@@ -84,7 +17,9 @@
         </header>
     </div>
     <footer>
-        <img src="CC.png" alt="CC BY-NC-SA">
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+            <img src="CC.png" alt="CC BY-NC-SA">
+        </a>
         <p>Alice Ree Borovičková</p>
     </footer>
 </body>
