@@ -2,53 +2,49 @@
 <html>
 <head>
     <meta charset="UTF-8">
-	<title>Special Smilecters</title>
+    <title>Special Smilecters</title>
     <style>
-        header {
-            margin-bottom: 2rem;
-        }
-
-        .correct {
-            color: rgb(255, 0, 244);
-        }
-
-        .container {
-            text-align: center;
-        }
-
         body {
             font-family: 'Courier New', monospace; /* font pro celý web */
             background-color: #000000; /* pozadí pro celý web */
             color: rgb(255, 0, 244); /* barva textu pro celý web */
             margin: 0;
             padding: 0;
-            display: flex; /* aktivuje možnost upořádat obsah uvnitř prvku */
-            align-items: center; /* zarovná obsah vertikálně na střed */
-            justify-content: center; /* zarovná obsah horizontálně na střed */
-            min-height: 100vh; /* nastaví 100 % výšky na výšku zařízení */
+            display: flex; /* aktivuje flexbox */
+            flex-direction: column; /* vertikální uspořádání prvků */
+            min-height: 100vh; /* nastaví výšku na 100 % viditelné části obrazovky */
+        }
+
+        .container {
+            text-align: center;
+            flex: 1; /* Umožní, aby se hlavní obsah roztáhl a byl zarovnán na střed */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertikální zarovnání obsahu na střed */
+            align-items: center; /* Horizontální zarovnání obsahu na střed */
         }
 
         nav {
             display: flex;
-            gap: 10px; /* mezera mezi navigačními odkazy */
+            gap: 20px; /* mezera mezi navigačními odkazy */
         }
 
         nav a {
-            text-decoration: none; /* odstraní podtržení odkazů */
-            color: rgb(255, 0, 244); /* barva textu odkazu */
+            text-decoration: none;
+            color: rgb(255, 0, 244);
             font-size: 2em;
             padding: 10px 20px;
-            border: 2px solid rgb(255, 0, 244); /* rámeček kolem odkazu */
+            border: 2px solid rgb(255, 0, 244);
             border-radius: 5px;
             transition: color 0.3s, border-color 0.3s;
         }
 
-        nav a:hover { /* efekt při najetí myší na odkaz */
-            color: rgb(255, 255, 255); /* změní barvu textu na bílou */
-            border-color: rgb(255, 255, 255); /* změní barvu rámečku na bílou */
+        nav a:hover {
+            color: rgb(255, 255, 255);
+            border-color: rgb(255, 255, 255);
         }
 
-        h1 { /* styl pro hlavní nadpis */
+        h1 {
             font-size: 3em;
             font-weight: normal;
             margin-bottom: 30px;
@@ -65,30 +61,31 @@
         }
 
         footer img {
-            height: 30px; /* Nastavíme výšku obrázku */
+            height: 30px;
             vertical-align: middle;
         }
 
         footer p {
             color: #ffffff;
             display: inline;
-            margin-left: 10px; /* odstup mezi obrázkem a textem */
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container"> <!-- díky tomuto mohu s pomocí CSS vše zarovnat na střed -->
-    <header>
-        <h1>Special Smilecters</h1>
-        <nav>
-            <a href="shortcuts.html">shortcuts</a>
-            <a href="game.html">game</a>
-            <a href="scoreboard.html">scoreboard</a>
-        </nav>
-    </header>
-<footer>
-    <img src="CC.png" alt="CC BY-NC-SA">
-    <p>Alice Ree Borovičková</p>
-</footer>
+    <div class="container">
+        <header>
+            <h1>Special Smilecters</h1>
+            <nav>
+                <a href="shortcuts.html">shortcuts</a>
+                <a href="game.html">game</a>
+                <a href="scoreboard.html">scoreboard</a>
+            </nav>
+        </header>
+    </div>
+    <footer>
+        <img src="CC.png" alt="CC BY-NC-SA">
+        <p>Alice Ree Borovičková</p>
+    </footer>
 </body>
 </html>
