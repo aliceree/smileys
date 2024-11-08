@@ -4,51 +4,47 @@
     <meta charset="UTF-8">
 	<title>game</title>
     <style>
-        header {
-            margin-bottom: 2rem;
-        }
-
-        .correct {
-            color: rgb(255, 0, 244);
-        }
-
-        .container {
-            text-align: center;
-        }
-
-        body {
+   body {
             font-family: 'Courier New', monospace; /* font pro celý web */
             background-color: #000000; /* pozadí pro celý web */
             color: rgb(255, 0, 244); /* barva textu pro celý web */
             margin: 0;
             padding: 0;
-            display: flex; /* aktivuje možnost upořádat obsah uvnitř prvku */
-            align-items: center; /* zarovná obsah vertikálně na střed */
-            justify-content: center; /* zarovná obsah horizontálně na střed */
-            min-height: 100vh; /* nastaví 100 % výšky na výšku zařízení */
+            display: flex; /* aktivuje flexbox */
+            flex-direction: column; /* vertikální uspořádání prvků */
+            min-height: 100vh; /* nastaví výšku na 100 % viditelné části obrazovky */
+        }
+
+        .container {
+            text-align: center;
+            flex: 1; /* Umožní, aby se hlavní obsah roztáhl a byl zarovnán na střed */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertikální zarovnání obsahu na střed */
+            align-items: center; /* Horizontální zarovnání obsahu na střed */
         }
 
         nav {
             display: flex;
-            gap: 10px; /* mezera mezi navigačními odkazy */
+            gap: 20px; /* mezera mezi navigačními odkazy */
         }
 
         nav a {
-            text-decoration: none; /* odstraní podtržení odkazů */
-            color: rgb(255, 0, 244); /* barva textu odkazu */
+            text-decoration: none;
+            color: rgb(255, 0, 244);
             font-size: 2em;
             padding: 10px 20px;
-            border: 2px solid rgb(255, 0, 244); /* rámeček kolem odkazu */
+            border: 2px solid rgb(255, 0, 244);
             border-radius: 5px;
             transition: color 0.3s, border-color 0.3s;
         }
 
-        nav a:hover { /* efekt při najetí myší na odkaz */
-            color: rgb(255, 255, 255); /* změní barvu textu na bílou */
-            border-color: rgb(255, 255, 255); /* změní barvu rámečku na bílou */
+        nav a:hover {
+            color: rgb(255, 255, 255);
+            border-color: rgb(255, 255, 255);
         }
 
-        h1 { /* styl pro hlavní nadpis */
+        h1 {
             font-size: 3em;
             font-weight: normal;
             margin-bottom: 30px;
@@ -65,19 +61,43 @@
         }
 
         footer img {
-            height: 30px; /* Nastavíme výšku obrázku */
+            height: 30px;
             vertical-align: middle;
         }
 
         footer p {
             color: #ffffff;
             display: inline;
-            margin-left: 10px; /* odstup mezi obrázkem a textem */
+            margin-left: 10px;
+        }
+
+        input[name="answer"] {
+            background-color: #000000; /* Černé pozadí */
+            color: #ffffff; /* Bílá barva textu */
+            border: 2px solid rgb(255, 0, 244); /* Růžový rámeček */
+            border-radius: 5px; /* Zaoblené rohy rámečku */
+            font-size: 1.5em; /* Velikost textu v poli */
+            padding: 10px; /* Vnitřní odsazení */
+            outline: none; /* Odstraní standardní obrys při fokusování */
+            font-family: 'Courier New', monospace; /* Nastavení fontu na Courier New */
+}
+
+        input[name="answer"]::placeholder {
+            color: rgb(255, 0, 244); /* Růžová barva pro placeholder text */
+        }
+
+        input[name="answer"]:focus {
+            cursor: text; /* Kurzorem pro text */
+            color: #ffffff; /* Bílá barva textu */
+        }
+
+        .correct {
+            color: rgb(255, 0, 244) !important; /* Vynutí růžovou barvu textu */
         }
     </style>
 </head>
 <body>
-    <div class="container"> <!-- díky tomuto mohu s pomocí CSS vše zarovnat na střed -->
+    <div class="container">
     <header>
         <h1>game</h1>
     </header>
@@ -95,20 +115,17 @@
             document.querySelector('input[name=answer]').focus(); // při načtení stránky nastaví fokus (kurzor) na vstupní pole
         });
 
-        document.querySelector('input[name=answer]').addEventListener('input', (event) => { // vyhledá 'input' s atributem name=answer a poslouchá, co uživatel napíše
-            const newVal = event.target.value;
-            if (newVal === currentQuestion) { //srovnává zda se zadaná hodnota rovná s aktuálním smajlíkem
+        document.querySelector('input[name="answer"]').addEventListener('input', (event) => {
+            const newVal = event.target.value; // Odstraní bílé mezery kolem zadaného textu
+            if (newVal === currentQuestion) {
+                event.target.classList.add('correct'); // přidá třídu .corresct pro růžovou barvu
                 
-                event.target.classList.add('correct'); // přidá třídu .correct, aby se text zbarvil do růžova
-
                 setTimeout(() => {
-                    event.target.value = ''; // vymaže správnou odpověď
-                    event.target.classList.remove('correct'); // odstraní třídu .correct (vymaže růžovou)
-
-                    currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // vybere dalšího náhodného smajlíka
-                    
-                    document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // aktualizuje zadání na nového náhodného smajlíka
-                }, 1000); // 1000 milisekund = 1 sekunda
+                    event.target.value = ''; // Vymaže obsah vstupního pole
+                    event.target.classList.remove('correct'); // Odstraní růžovou barvu
+                    currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // Vygeneruje nového smajlíka
+                    document.querySelector('label[for="answer"]').textContent = currentQuestion; // Aktualizuje otázku
+                }, 1000); // 1000 ms = 1 sekunda
             }
         });
     </script>
