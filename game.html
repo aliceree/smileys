@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-	<title>Special Smilecters</title>
+	<title>game</title>
     <style>
         header {
             margin-bottom: 2rem;
@@ -79,13 +79,39 @@
 <body>
     <div class="container"> <!-- díky tomuto mohu s pomocí CSS vše zarovnat na střed -->
     <header>
-        <h1>Special Smilecters</h1>
-        <nav>
-            <a href="shortcuts.html">shortcuts</a>
-            <a href="game.html">game</a>
-            <a href="scoreboard.html">scoreboard</a>
-        </nav>
+        <h1>game</h1>
     </header>
+    <main>
+        <label for="answer"></label>
+        <input type="text" name="answer"/>
+    </main>
+    <script>
+        const questions = [':-)', '#_$', ';+/', '@_€', '<:]', ';}']; // nepřepsatelná hodnota pro 'questions'
+        let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
+
+        document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // nastaví náhodného smajlíka jako první zadání
+
+        document.addEventListener('DOMContentLoaded', () => { // DOMContentLoaded znaměná, že se následující kód spustí, až po úplném načtení HTML dokumentu
+            document.querySelector('input[name=answer]').focus(); // při načtení stránky nastaví fokus (kurzor) na vstupní pole
+        });
+
+        document.querySelector('input[name=answer]').addEventListener('input', (event) => { // vyhledá 'input' s atributem name=answer a poslouchá, co uživatel napíše
+            const newVal = event.target.value;
+            if (newVal === currentQuestion) { //srovnává zda se zadaná hodnota rovná s aktuálním smajlíkem
+                
+                event.target.classList.add('correct'); // přidá třídu .correct, aby se text zbarvil do růžova
+
+                setTimeout(() => {
+                    event.target.value = ''; // vymaže správnou odpověď
+                    event.target.classList.remove('correct'); // odstraní třídu .correct (vymaže růžovou)
+
+                    currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // vybere dalšího náhodného smajlíka
+                    
+                    document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // aktualizuje zadání na nového náhodného smajlíka
+                }, 1000); // 1000 milisekund = 1 sekunda
+            }
+        });
+    </script>
 <footer>
     <img src="CC.png" alt="CC BY-NC-SA">
     <p>Alice Ree Borovičková</p>
