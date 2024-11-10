@@ -117,24 +117,27 @@
     padding: 10px; /* Vnitřní odsazení */
     outline: none; /* Odstraní standardní obrys při fokusování */
     font-family: 'Courier New', monospace; /* Nastavení fontu na Courier New */
-}
+    width: 80px; /* Nastaví šířku na 100px */
+    height: 80px; /* Nastaví výšku na stejnou hodnotu jako šířku */
+    padding: 10px; /* Volitelné: přidá vnitřní odsazení */
+    box-sizing: border-box; /* Zahrne padding a border do celkové šířky a výšky */
+    font-size: 1.5em; /* Nastaví velikost textu uvnitř pole */
+    text-align: center; /* Volitelné: zarovná text na střed */
 
-input[name="answer"]::placeholder {
-    color: rgb(255, 0, 244); /* Výchozí růžová barva pro placeholder text */
-}
+    }
 
-input[name="answer"]:focus {
-    cursor: text; /* Kurzorem pro text */
-    color: #ffffff; /* Bílá barva textu */
-}
+    input[name="answer"]::placeholder {
+        color: rgb(255, 0, 244); /* Výchozí růžová barva pro placeholder text */
+    }
 
-input[name="answer"].correct::placeholder {
-    color: rgb(255, 0, 244); /* Růžová barva, když je input označen jako správný */
-}
+    input[name="answer"]:focus {
+        cursor: text; /* Kurzorem pro text */
+        color: #ffffff; /* Bílá barva textu */
+    }
 
-.correct {
+    .correct {
     color: rgb(255, 0, 244) !important; /* Růžová barva textu pro správnou odpověď */
-}
+    }
   </style>
 </head>
 <body>
