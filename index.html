@@ -80,30 +80,33 @@
     }
     
     menu {
-      display: flex;
+      display: flex; /* aktivuje flexbox pro horizontální uspořídíní */
       gap: 2rem; /* mezera mezi tlačítky navigace */
-      list-style-type: none; /* odstranění výchozích stylů */
-      padding: 0;
-      margin: 0;
+      list-style-type: none; /* odstranění výchozích odrážek seznamu */
+      padding: 0; /* odtraňuje výchozí vnitřní odsazení */
+      margin: 0; /* ostraňuje výchozí vnější odsazení  */
     }
+    
     menu li {
-      display: contents;
+      display: contents; /* nebude vykresleno jako viditelný blokový prvek */
     }
+    
     menu a {
-      display: flex;
-      min-width: 8rem;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
-      border: 1px solid var(--primary-color);
-      padding: .5rem 1rem;
-      border-radius: var(--border-radius);
-      text-align: center;
-      font-size: 1.2rem;
+      display: flex; /* flexbox pro obsah uvnitř boxu */
+      min-width: 8rem; /* minimální šířka tlačítka */
+      justify-content: center; /* horizontální zarovnání textu na střed */
+      align-items: center; /* vertikální zarovnání textu na střed */
+      box-sizing: border-box; /* zahrnuje padding a border do výpočtu šířky a výšky */
+      border: 1px solid var(--primary-color); /* barva rámečku */
+      padding: .5rem 1rem; /* vnitřní odsazení tlačítka (vertikálně i horizontálně) */
+      border-radius: var(--border-radius); /* zaoblení rohů podle proměnné */
+      text-align: center; /* zarovnání textu uvnitř tlačítka */
+      font-size: 1rem; /* velikost písma */
     }
+    
     menu a:hover {
-      color: var(--active-color);
-      border-color: var(--active-color);
+      color: var(--active-color); /* barva textu při najetí myší na odkaz */
+      border-color: var(--active-color); /* barva rámečku při najetí myší */
     }
 
 		#game {
@@ -116,14 +119,14 @@
 		}
 
 		#game h1 {
-			margin-bottom: 1rem;
+			margin-bottom: 2rem; /* spodní mezera pod h1 na 2 rem */
 		}
 
 		.input-container {
 			display: flex; /* aktivace flexboxu input */
 			align-items: center; /* vertikální zarovnání na střed */
 			gap: 0.8rem; /* mezera mezi smajlíkem a inputem */
-			line-height: 9rem;
+			line-height: 8rem; /* výška řádku pro text v elementu */
 		}
 
     input[name="answer"] {
