@@ -5,7 +5,7 @@
   <title>Shortcut Smileys</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root {
+    :root { /* pseudo třída deklarující CSS proměnné */
       --background-color: #000;
       --primary-color: #fb00f1;
       --active-color: #fff;
@@ -82,7 +82,7 @@
       display: flex;
       gap: 2rem;
       
-      /* remove default list styles */
+    /* odstranění výchozích stylů */
       list-style-type: none;
       padding: 0;
       margin: 0;
@@ -108,35 +108,52 @@
       border-color: var(--active-color);
     }
 
+		#game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+		}
+
+		#game h1 {
+			margin-bottom: 1rem;
+		}
+
+		.input-container {
+			display: flex; /* aktivace flexboxu input */
+			align-items: center; /* vertikální zarovnání na střed */
+			gap: 10px; /* mezera mezi smajlíkem a inputem */
+		}
+
+		.input-container input {
+			width: 200px;
+			height: 40px;
+			text-align: center;
+		}
+
     input[name="answer"] {
-    background-color: #000000; /* Černé pozadí */
-    color: #ffffff; /* Bílá barva textu */
-    border: 2px solid rgb(255, 0, 244); /* Růžový rámeček */
-    border-radius: 5px; /* Zaoblené rohy rámečku */
-    font-size: 1.5em; /* Velikost textu v poli */
-    padding: 10px; /* Vnitřní odsazení */
-    outline: none; /* Odstraní standardní obrys při fokusování */
-    font-family: 'Courier New', monospace; /* Nastavení fontu na Courier New */
-    width: 80px; /* Nastaví šířku na 100px */
-    height: 80px; /* Nastaví výšku na stejnou hodnotu jako šířku */
-    padding: 10px; /* Volitelné: přidá vnitřní odsazení */
-    box-sizing: border-box; /* Zahrne padding a border do celkové šířky a výšky */
-    font-size: 1.5em; /* Nastaví velikost textu uvnitř pole */
-    text-align: center; /* Volitelné: zarovná text na střed */
-
-    }
-
-    input[name="answer"]::placeholder {
-        color: rgb(255, 0, 244); /* Výchozí růžová barva pro placeholder text */
+			font-family: 'Courier New', monospace; /* font na Courier New */
+			color: #ffffff; /* bílá barva zadávaného textu */
+			background-color: #000000; /* černé pozadí inputu */
+			border: 1px solid rgb(255, 0, 244); /* růžový rámeček s plnou (solid) čárou */
+			border-radius: 5px; /* zaoblené rohy rámečku */
+			font-size: 1em; /* velikost textu uvnitř inputu */
+			text-align: center; /* zarovnání textu v inputu na střed */
+			outline: none; /* odstraní modrý obrys při fokusování */
+			width: 80px; /* šířka inputu 80px */
+			height: 80px; /* výška inputu 80px */
+			padding: 5px; /* vnitřní odsazení rámcečku od textu */
+			box-sizing: border-box; /* zahrne padding a border do celkové šířky a výšky */
     }
 
     input[name="answer"]:focus {
-        cursor: text; /* Kurzorem pro text */
-        color: #ffffff; /* Bílá barva textu */
+        cursor: text; /* nastaví kurzor na textový kurzor */
     }
 
     .correct {
-    color: rgb(255, 0, 244) !important; /* Růžová barva textu pro správnou odpověď */
+    color: rgb(255, 0, 244) !important; /* správná odpověď se přebarví na růžovou */
     }
   </style>
 </head>
@@ -147,15 +164,17 @@
       <nav>
         <menu>
           <li><a href="#shortcuts">shortcuts</a></li>
-          <li><a href="#gameplay">game</a></li>
+          <li><a href="#game">game</a></li>
           <li><a href="#scoreboard">score<br>board</a></li>
         </menu>
       </nav>
     </header>
-    <section id="gameplay">
+    <section id="game">
       <h1>game</h1>
-      <label for="answer"></label>
-      <input type="text" name="answer"/>
+			<div class="input-container">
+				<label for="answer"></label>
+				<input type="text" name="answer" />
+			</div>
       <dialog>
         <form>
           <label for="username">You have finished the game! If you want to save your score, write your name.</label>
@@ -168,22 +187,27 @@
 
         document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // nastaví náhodného smajlíka jako první zadání
 
-        document.addEventListener('DOMContentLoaded', () => { // DOMContentLoaded znaměná, že se následující kód spustí, až po úplném načtení HTML dokumentu
-            document.querySelector('input[name=answer]').focus(); // při načtení stránky nastaví fokus (kurzor) na vstupní pole
-        });
+        document.querySelector('a[href="#game"]').addEventListener('click', (event) => {
+        setTimeout(() => {
+          const answerInput = document.querySelector('input[name="answer"]');
+          if (answerInput) {
+            answerInput.focus(); // nastaví fokus na vstupní pole po přesunu do sekce #game
+        	}
+        }, 100); // zpoždění, aby stránka stihla přejít do sekce #game
+    });
 
         document.querySelector('input[name="answer"]').addEventListener('input', (event) => {
-            const newVal = event.target.value; // Odstraní bílé mezery kolem zadaného textu
-            if (newVal === currentQuestion) {
-                event.target.classList.add('correct'); // přidá třídu .corresct pro růžovou barvu
+          const newVal = event.target.value; // odstraní bílé mezery kolem zadaného textu
+          if (newVal === currentQuestion) {
+              event.target.classList.add('correct'); // přidá třídu .correct pro růžovou barvu
                 
-                setTimeout(() => {
-                    event.target.value = ''; // Vymaže obsah vstupního pole
-                    event.target.classList.remove('correct'); // Odstraní růžovou barvu
-                    currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // Vygeneruje nového smajlíka
-                    document.querySelector('label[for="answer"]').textContent = currentQuestion; // Aktualizuje otázku
-                }, 1000); // 1000 ms = 1 sekunda
-            }
+              setTimeout(() => {
+                event.target.value = ''; // vymaže obsah vstupního pole
+                event.target.classList.remove('correct'); // odstraní růžovou barvu
+                currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // vygeneruje nového smajlíka
+                document.querySelector('label[for="answer"]').textContent = currentQuestion; // aktualizuje otázku
+              }, 1000); // 1000 ms = 1 sekunda
+          }
         });
     </script>
     </section>
@@ -191,12 +215,12 @@
       <h1>shortcuts</h1>
     </section>
     <section id="scoreboard" class="distinctive">
-      <h1>score board</h1>
+      <h1>scoreboard</h1>
     </section>
   </main>
   <footer>
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
-        <img src="CC.png" alt="CC BY-NC-SA">
+      <img src="CC.png" alt="CC BY-NC-SA">
     </a>
     <p>Alice Ree Borovičková</p>
 </footer>
