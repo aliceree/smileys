@@ -45,11 +45,11 @@
 
     header,
     section {
-      height: 100vh;
-      overflow: hidden;
-      box-sizing: border-box;
-      padding: 0 1rem;
-      scroll-snap-align: end;
+      height: 100vh; /* nastavení výšky elementu na 100 % obrazovky */
+      overflow: hidden; /* skryje přetékající obsah a nejsou tak vidět posuvníky */
+      box-sizing: border-box; /* změní způspb výpočtu rozměrů (do w a h navíc ještě započítá padding a border) */
+      padding: 0 1rem; /* žádné odsazení nahoře a dole, odsazení v pravo, levo 1rem */
+      scroll-snap-align: end; /* sekce se zarovná na spodní okraj viditelné části obrazovky */
     }
     
     h1 {
