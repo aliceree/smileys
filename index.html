@@ -107,12 +107,12 @@
     }
 
 		#game {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			min-height: 100vh;
-			text-align: center;
+			display: flex; /* aktivuje flexbox */
+			flex-direction: column; /* uspořádá obsah do sloupců */
+			justify-content: center; /* zarovná obsah vertikálně na střed */
+			align-items: center; /* zarovná obsah horizontálně na střed */
+			min-height: 100vh; /* výška sekce je 100 % výška obrazovky */
+			text-align: center; /* text uvnitř prvků je zarovnán na střed */
 		}
 
 		#game h1 {
@@ -122,8 +122,7 @@
 		.input-container {
 			display: flex; /* aktivace flexboxu input */
 			align-items: center; /* vertikální zarovnání na střed */
-      justify-content: center;
-			gap: 50 px; /* mezera mezi smajlíkem a inputem */
+			gap: 0.8rem; /* mezera mezi smajlíkem a inputem */
 			line-height: 9rem;
 		}
 
@@ -164,7 +163,6 @@
       </nav>
     </header>
     <section id="game">
-     <header>
       <h1>game</h1>
 			<body>
 				<p>? ! : ; + - = _ / „“ ‘ *<br>
@@ -203,7 +201,6 @@
           }
         });
     </script>
-    </header>
     </section>
     <section id="shortcuts">
       <h1>shortcuts</h1>
