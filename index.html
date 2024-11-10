@@ -12,35 +12,37 @@
       --border-radius: .5rem;
     }
     
-    html {
+    html /* základní velikost písma pro celý dokument */ {
       font-size: 22px;
     }
     
     body {
-      margin: 0;
-      font-family: "Courier New", monospace;
-      background-color: var(--background-color);
-      color: var(--primary-color);
-      overflow: hidden;
+      margin: 0; /* nastavení okraje těla stránky na 0 */
+      font-family: "Courier New", monospace; /* pokud nebude Courier New dostupný, použije se obecný font typu monospace */
+      background-color: var(--background-color); /* vychází z definované proměnné pro barvu pozadí */
+      color: var(--primary-color); /* vychází z definované proměnné pro barvu textu */
+      overflow: hidden; /* skryje přetékající obsah a nejsou tak vidět posuvníky */
     }
     
-    a, a:visited {
+    a, a:visited /* drží barvu pro odkazy, i ty navštívené */ {
       color: var(--primary-color);
+			text-decoration: none; /* odstranění typického podtržení odkazů */
     }
-    a:hover, a:active {
+    
+		a:hover, a:active /* po najetí myší nebo kliknutí na odkaz se zbarví do předdefinované proměnné */ {
       color: var(--active-color);
     }
     
-    .distinctive {
+    .distinctive /* třída měnící níže definované prvny (já to mám kvůli sekci scoreboard) */{
       background-color: var(--primary-color);
       color: var(--active-color);
     }
     
     main {
-      scroll-behavior: smooth;
-      overflow-y: scroll;
-      height: 100vh;
-      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth; /* hladké posouvání při scrolování na ukotvené odkazy s pomocí href="#selekce" */
+      overflow-y: scroll; /* scroluje po ose y */
+      height: 100vh; /* nastavení výšky elementu na 100 % obrazovky */
+      scroll-snap-type: y mandatory; /* automatické zarovnání při scrollování na ose y */
     }
 
     header,
@@ -92,7 +94,6 @@
       min-width: 8rem;
       justify-content: center;
       align-items: center;
-      text-decoration: none;
       box-sizing: border-box;
       border: 1px solid var(--primary-color);
       padding: .5rem 1rem;
