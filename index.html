@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Shortcut Smileys</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- viewpoint je viditelná část obrazovky -->
   <style>
     :root /* pseudo třída deklarující CSS proměnné */ {
       --background-color: #000;
@@ -13,7 +13,7 @@
     }
     
     html /* základní velikost písma pro celý dokument */ {
-      font-size: 22px;
+      font-size: 25px;
     }
     
     body {
@@ -22,6 +22,11 @@
       background-color: var(--background-color); /* vychází z definované proměnné pro barvu pozadí */
       color: var(--primary-color); /* vychází z definované proměnné pro barvu textu */
       overflow: hidden; /* skryje přetékající obsah a nejsou tak vidět posuvníky */
+    }
+
+    p {
+      margin-top: 0; /* horní mezera odstavce na 0 */
+      margin-bottom: 0rem; /* spodní mezera na 0rem */
     }
     
     a, a:visited /* drží barvu pro odkazy, i ty navštívené */ {
@@ -53,33 +58,30 @@
     }
     
     h1 {
-      font-weight: normal;
+      font-weight: normal; /* výchozí nastavení písma u h1 je bolt */
       text-align: center;
-    }
-    
-    p {
-      font-size: 1.2rem;
+      margin-bottom: 0.5rem; /* spodní mezera na 0.5rem */
     }
     
     header {
-      display: grid;
-      gap: 1rem;
-      grid-template-rows: auto auto;
-      align-items: center;
-      justify-content: center;
+      display: grid; /* element se stává kontejnerem mřížky, obsah lze rozvrhnout do řádků a sloupců */
+      gap: 1rem; /* rozestup mezi jednotlivými buňkami mřížky */
+      grid-template-rows: auto auto; /* dva řádky mřížky budou vysoké tak, jak je potřeba */
+      align-items: center; /* obsah buněk bude zarovnán vertikálně na střed */
+      justify-content: center; /* celý obsah mřížky bude vodorovně na střed */
     }
     
     header nav {
-      align-self: start;
+      align-self: start; /* vertikální zarovnání do mřížky nebo Flexboxu; start zarovná obsah k hornímu okraji */
     }
     
     header h1 {
-      align-self: end;
+      align-self: end; /* vertikální zarovnání do mřížky nebo Flexboxu; start zarovná obsah ke spodnímu okraji */
     }
     
     menu {
       display: flex;
-      gap: 2rem;
+      gap: 2rem; /* mezera mezi tlačítky navigace */
       list-style-type: none; /* odstranění výchozích stylů */
       padding: 0;
       margin: 0;
@@ -114,13 +116,14 @@
 		}
 
 		#game h1 {
-			margin-bottom: 2rem;
+			margin-bottom: 1rem;
 		}
 
 		.input-container {
 			display: flex; /* aktivace flexboxu input */
 			align-items: center; /* vertikální zarovnání na střed */
-			gap: 10px; /* mezera mezi smajlíkem a inputem */
+      justify-content: center;
+			gap: 50 px; /* mezera mezi smajlíkem a inputem */
 			line-height: 9rem;
 		}
 
@@ -151,7 +154,7 @@
 <body>
   <main>
     <header>
-      <h1>Cut it short!</h1>
+      <h1>Shortcut Smileys</h1>
       <nav>
         <menu>
           <li><a href="#shortcuts">shortcuts</a></li>
@@ -161,21 +164,16 @@
       </nav>
     </header>
     <section id="game">
+     <header>
       <h1>game</h1>
 			<body>
-				? ! : ; + - = _ / „“ ‘ *<br>
-				% € $ # & @ () [] {} <><br>
+				<p>? ! : ; + - = _ / „“ ‘ *<br>
+				% € $ # & @ () [] {} <></p>
 			</body>
 			<div class="input-container">
 				<label for="answer"></label>
-				<input type="text" name="answer" />
+        <input type="text" name="answer" id="answer"/>
 			</div>
-      <dialog>
-        <form>
-          <label for="username">You have finished the game! If you want to save your score, write your name.</label>
-          <input type="text" id="username" required>
-        </form>
-      </dialog>
       <script>
         const questions = [':-)', '#_$', ';+/', '@_€', '<:]', ';*}']; // nepřepsatelná hodnota pro 'questions'
         let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
@@ -205,6 +203,7 @@
           }
         });
     </script>
+    </header>
     </section>
     <section id="shortcuts">
       <h1>shortcuts</h1>
@@ -213,11 +212,13 @@
       <h1>scoreboard</h1>
     </section>
   </main>
+<!--
   <footer>
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
       <img src="CC.png" alt="CC BY-NC-SA">
     </a>
     <p>Alice Ree Borovičková</p>
 </footer>
+ -->
 </body>
 </html>
