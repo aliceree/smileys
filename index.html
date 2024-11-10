@@ -1,26 +1,201 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <title>Special Smilecters</title>
-    <link rel="stylesheet" href="smilecters.css">
+  <meta charset="UTF-8">
+  <title>Shortcut Smileys</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --background-color: #000;
+      --primary-color: #fb00f1;
+      --active-color: #fff;
+      --border-radius: .5rem;
+    }
+    
+    html {
+      font-size: 18px;
+    }
+    
+    body {
+      margin: 0;
+      font-family: "Courier New", monospace;
+      background-color: var(--background-color);
+      color: var(--primary-color);
+      overflow: hidden;
+    }
+    
+    a, a:visited {
+      color: var(--primary-color);
+    }
+    a:hover, a:active {
+      color: var(--active-color);
+    }
+    
+    .distinctive {
+      background-color: var(--primary-color);
+      color: var(--active-color);
+    }
+    
+    main {
+      scroll-behavior: smooth;
+      overflow-y: scroll;
+      height: 100vh;
+      scroll-snap-type: y mandatory;
+    }
+
+    header,
+    section {
+      height: 100vh;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 0 1rem;
+      scroll-snap-align: end;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      font-weight: normal;
+      text-align: center;
+    }
+    
+    p {
+      font-size: 1.2rem;
+    }
+    
+    header {
+      display: grid;
+      gap: 1rem;
+      grid-template-rows: auto auto;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    header nav {
+      align-self: start;
+    }
+    
+    header h1 {
+      align-self: end;
+    }
+    
+    menu {
+      display: flex;
+      gap: 2rem;
+      
+      /* remove default list styles */
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    menu li {
+      display: contents;
+    }
+    menu a {
+      display: flex;
+      min-width: 8rem;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      box-sizing: border-box;
+      border: 1px solid var(--primary-color);
+      padding: .5rem 1rem;
+      border-radius: var(--border-radius);
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    menu a:hover {
+      color: var(--active-color);
+      border-color: var(--active-color);
+    }
+
+    input[name="answer"] {
+    background-color: #000000; /* Černé pozadí */
+    color: #ffffff; /* Bílá barva textu */
+    border: 2px solid rgb(255, 0, 244); /* Růžový rámeček */
+    border-radius: 5px; /* Zaoblené rohy rámečku */
+    font-size: 1.5em; /* Velikost textu v poli */
+    padding: 10px; /* Vnitřní odsazení */
+    outline: none; /* Odstraní standardní obrys při fokusování */
+    font-family: 'Courier New', monospace; /* Nastavení fontu na Courier New */
+}
+
+input[name="answer"]::placeholder {
+    color: rgb(255, 0, 244); /* Výchozí růžová barva pro placeholder text */
+}
+
+input[name="answer"]:focus {
+    cursor: text; /* Kurzorem pro text */
+    color: #ffffff; /* Bílá barva textu */
+}
+
+input[name="answer"].correct::placeholder {
+    color: rgb(255, 0, 244); /* Růžová barva, když je input označen jako správný */
+}
+
+.correct {
+    color: rgb(255, 0, 244) !important; /* Růžová barva textu pro správnou odpověď */
+}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Special Smilecters</h1>
-            <nav>
-                <a href="shortcuts.html">shortcuts</a>
-                <a href="game.html">game</a>
-                <a href="scoreboard.html">scoreboard</a>
-            </nav>
-        </header>
-    </div>
-    <footer>
-        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
-            <img src="CC.png" alt="CC BY-NC-SA">
-        </a>
-        <p>Alice Ree Borovičková</p>
-    </footer>
+  <main>
+    <header>
+      <h1>Cut it short!</h1>
+      <nav>
+        <menu>
+          <li><a href="#shortcuts">shortcuts</a></li>
+          <li><a href="#gameplay">game</a></li>
+          <li><a href="#scoreboard">score<br>board</a></li>
+        </menu>
+      </nav>
+    </header>
+    <section id="gameplay">
+      <h1>game</h1>
+      <label for="answer"></label>
+      <input type="text" name="answer"/>
+      <dialog>
+        <form>
+          <label for="username">You have finished the game! If you want to save your score, write your name.</label>
+          <input type="text" id="username" required>
+        </form>
+      </dialog>
+      <script>
+        const questions = [':-)', '#_$', ';+/', '@_€', '<:]', ';*}']; // nepřepsatelná hodnota pro 'questions'
+        let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
+
+        document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // nastaví náhodného smajlíka jako první zadání
+
+        document.addEventListener('DOMContentLoaded', () => { // DOMContentLoaded znaměná, že se následující kód spustí, až po úplném načtení HTML dokumentu
+            document.querySelector('input[name=answer]').focus(); // při načtení stránky nastaví fokus (kurzor) na vstupní pole
+        });
+
+        document.querySelector('input[name="answer"]').addEventListener('input', (event) => {
+            const newVal = event.target.value; // Odstraní bílé mezery kolem zadaného textu
+            if (newVal === currentQuestion) {
+                event.target.classList.add('correct'); // přidá třídu .corresct pro růžovou barvu
+                
+                setTimeout(() => {
+                    event.target.value = ''; // Vymaže obsah vstupního pole
+                    event.target.classList.remove('correct'); // Odstraní růžovou barvu
+                    currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // Vygeneruje nového smajlíka
+                    document.querySelector('label[for="answer"]').textContent = currentQuestion; // Aktualizuje otázku
+                }, 1000); // 1000 ms = 1 sekunda
+            }
+        });
+    </script>
+    </section>
+    <section id="shortcuts">
+      <h1>shortcuts</h1>
+    </section>
+    <section id="scoreboard" class="distinctive">
+      <h1>score board</h1>
+    </section>
+  </main>
+  <footer>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+        <img src="CC.png" alt="CC BY-NC-SA">
+    </a>
+    <p>Alice Ree Borovičková</p>
+</footer>
 </body>
 </html>
