@@ -5,7 +5,7 @@
   <title>Shortcut Smileys</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root { /* pseudo třída deklarující CSS proměnné */
+    :root /* pseudo třída deklarující CSS proměnné */ {
       --background-color: #000;
       --primary-color: #fb00f1;
       --active-color: #fff;
@@ -81,9 +81,7 @@
     menu {
       display: flex;
       gap: 2rem;
-      
-    /* odstranění výchozích stylů */
-      list-style-type: none;
+      list-style-type: none; /* odstranění výchozích stylů */
       padding: 0;
       margin: 0;
     }
@@ -109,28 +107,23 @@
     }
 
 		#game {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			text-align: center;
 		}
 
 		#game h1 {
-			margin-bottom: 1rem;
+			margin-bottom: 2rem;
 		}
 
 		.input-container {
 			display: flex; /* aktivace flexboxu input */
 			align-items: center; /* vertikální zarovnání na střed */
 			gap: 10px; /* mezera mezi smajlíkem a inputem */
-		}
-
-		.input-container input {
-			width: 200px;
-			height: 40px;
-			text-align: center;
+			line-height: 9rem;
 		}
 
     input[name="answer"] {
@@ -171,6 +164,10 @@
     </header>
     <section id="game">
       <h1>game</h1>
+			<body>
+				? ! : ; + - = _ / „“ ‘ *<br>
+				% € $ # & @ () [] {} <><br>
+			</body>
 			<div class="input-container">
 				<label for="answer"></label>
 				<input type="text" name="answer" />
