@@ -145,12 +145,31 @@
     }
 
     input[name="answer"]:focus {
-        cursor: text; /* nastaví kurzor na textový kurzor */
+      cursor: text; /* nastaví kurzor na textový kurzor */
     }
 
     .correct {
-    color: rgb(255, 0, 244) !important; /* správná odpověď se přebarví na růžovou */
+      color: rgb(255, 0, 244) !important; /* správná odpověď se přebarví na růžovou */
     }
+
+    footer {
+      font-size: 0.8rem;
+      display: flex; /* aktivuje flexbox */
+      justify-content: center; /* horizontální zarovnání na střed */
+      align-items: center; /* vertikální zarovnání na střed */
+      gap: 0.5rem; /* mezera mezi obrázkem a textem */
+      background-color: transparent;
+      color: var(--active-color); /* barva textu */
+      padding: 1rem 0; /* odsazení od spodní části stránky */
+      width: 100%; /* Zabírá celou šířku stránky */
+      position: fixed; /* umístění patičky na spodní okraj viditelné části stránky */
+      bottom: 0; /* patička je připevněna ke spodnímu okraji */
+    }
+
+    footer img {
+    width: 100px; /* Nastaví šířku obrázku na 50px */
+    height: auto; /* Výška se přizpůsobí šířce pro zachování poměru stran */
+}
   </style>
 </head>
 <body>
@@ -211,14 +230,11 @@
     <section id="scoreboard" class="distinctive">
       <h1>scoreboard</h1>
     </section>
-  </main>
-<!--
   <footer>
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
       <img src="CC.png" alt="CC BY-NC-SA">
     </a>
     <p>Alice Ree Borovičková</p>
 </footer>
- -->
 </body>
 </html>
