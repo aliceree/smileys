@@ -42,6 +42,10 @@
       background-color: var(--primary-color);
       color: var(--active-color);
     }
+
+    .distinctive .close-button {
+      color: var(--active-color); /* Barva křížku pouze v sekci s třídou distinctive */
+    }
     
     main {
       scroll-behavior: auto; /* okamžité (ne hladké) přesunutí */
@@ -55,6 +59,7 @@
       box-sizing: border-box; /* změní způspb výpočtu rozměrů (do w a h navíc ještě započítá padding a border) */
       padding: 0 1rem; /* žádné odsazení nahoře a dole, odsazení v pravo, levo 1rem */
       scroll-snap-align: end; /* sekce se zarovná na spodní okraj viditelné části obrazovky */
+      position: relative; /* pozice křížků; umožní správné umístění absolutně pozicovaných prvků uvnitř sekce */
     }
     
     h1 {
@@ -107,6 +112,18 @@
     menu a:hover {
       color: var(--active-color); /* barva textu při najetí myší na odkaz */
       border-color: var(--active-color); /* barva rámečku při najetí myší */
+    }
+
+    .close-button {
+      position: absolute; /* umístí element relativně k nejbližšímu rodiči s position: relative */
+      top: 10px; /* vzdálenost od horního okraje */
+      right: 30px; /* vzdálenost od pravého okraje */
+      font-size: 1.5rem; /* velikost textu pro křížek */
+      color: var(--primary-color); /* barva křížku */
+    }
+
+    .close-button:hover {
+      color: var(--active-color); /* Změna barvy při najetí myší */
     }
 
 		#game {
@@ -185,6 +202,7 @@
       </nav>
     </header>
     <section id="game">
+      <a href="#top" class="close-button">x</a>
       <h1>game</h1>
 			<body>
 				<p>? ! : ; + - = _ / „“ ‘ *<br>
@@ -225,9 +243,11 @@
     </script>
     </section>
     <section id="shortcuts">
+      <a href="#top" class="close-button">x</a>
       <h1>shortcuts</h1>
     </section>
     <section id="scoreboard" class="distinctive">
+      <a href="#top" class="close-button distinctive-color">x</a>
       <h1>scoreboard</h1>
     </section>
   <footer>
