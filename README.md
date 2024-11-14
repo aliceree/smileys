@@ -8,6 +8,7 @@
 | 2   |  stylování homepage a fontu a pozadí
 | 2   |  rozdělení na smilecters.html, game.html, smilecters.css a přebarvení input dle designu
 | 5   |  předelání dle designu na fakan.cz (zpět do 1 HTML dokumentu), kontrola kódu a pochopení jeho principu
+|1.5  |  křížek (close button) + vymýšlení klávesnice
 
 odkazy:
 https://smilecters.pages.dev
