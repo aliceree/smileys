@@ -133,6 +133,7 @@
 			align-items: center; /* zarovná obsah horizontálně na střed */
 			min-height: 100vh; /* výška sekce je 100 % výška obrazovky */
 			text-align: center; /* text uvnitř prvků je zarovnán na střed */
+      user-select: none; /* zákaz kopírování smajlíků */
 		}
 
 		#game h1 {
@@ -188,6 +189,13 @@
     height: auto; /* Výška se přizpůsobí šířce pro zachování poměru stran */
 }
   </style>
+  <script> /* pokud uživatel zmáčkne "esc" vrátí se na homepage */
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') { 
+        window.location.hash = '#top'; 
+      }
+    });
+  </script>
 </head>
 <body>
   <main>
@@ -202,7 +210,7 @@
       </nav>
     </header>
     <section id="game">
-      <a href="#top" class="close-button">x</a>
+      <a href="#top" class="close-button">&#xd7;</a>
       <h1>game</h1>
 			<body>
 				<p>? ! : ; + - = _ / „“ ‘ *<br>
@@ -243,11 +251,11 @@
     </script>
     </section>
     <section id="shortcuts">
-      <a href="#top" class="close-button">x</a>
+      <a href="#top" class="close-button">&#xd7;</a>
       <h1>shortcuts</h1>
     </section>
     <section id="scoreboard" class="distinctive"> /* třída .correct
-      <a href="#top" class="close-button distinctive-color">x</a>
+      <a href="#top" class="close-button distinctive-color">&#xd7;</a>
       <h1>scoreboard</h1>
     </section>
   <footer>
