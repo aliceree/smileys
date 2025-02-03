@@ -11,6 +11,7 @@
 |1.5  |  křížek (close button) + vymýšlení klávesnice
 | 2   |  Close Button jako speciální znak, ne jako písmeno + funkčnost tlačítka esc; zákaz kopírování smajlíků, tvorba GPTs
 | 2   |  tvorba klávesnice v .ai a vkládání .svg
+|1.5  |  sekce shortcuts: zmenšování klavesnice, návod na napsání znaku ? a zvýraznění kláves
 
 odkazy:
 https://smilecters.pages.dev
