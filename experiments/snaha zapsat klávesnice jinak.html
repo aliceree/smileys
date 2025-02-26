@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Shortcut Smileys</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- viewpoint je viditelná část obrazovky -->
+  <style>
+    :root /* pseudo třída deklarující CSS proměnné */ {
+      --background-color: #000;
+      --primary-color: #fb00f1;
+      --active-color: #fff;
+      --border-radius: .5rem;
+    }
+    
+    html /* základní velikost písma pro celý dokument */ {
+      font-size: 25px;
+    }
+    
+    body {
+      margin: 0; /* nastavení okraje těla stránky na 0 */
+      font-family: "Courier New", monospace; /* pokud nebude Courier New dostupný, použije se obecný font typu monospace */
+      background-color: var(--background-color); /* vychází z definované proměnné pro barvu pozadí */
+      color: var(--primary-color); /* vychází z definované proměnné pro barvu textu */
+      overflow: hidden; /* skryje přetékající obsah a nejsou tak vidět posuvníky */
+    }
+
+    p {
+      margin-top: 0; /* horní mezera odstavce na 0 */
+      margin-bottom: 0rem; /* spodní mezera na 0rem */
+    }
+    
+    a, a:visited /* drží barvu pro odkazy, i ty navštívené */ {
+      color: var(--primary-color);
+			text-decoration: none; /* odstranění typického podtržení odkazů */
+    }
+    
+		a:hover, a:active /* po najetí myší nebo kliknutí na odkaz se zbarví do předdefinované proměnné */ {
+      color: var(--active-color);
+    }
+    
+    .distinctive /* třída měnící níže definované prvny (já to mám kvůli sekci scoreboard) */{
+      background-color: var(--primary-color);
+      color: var(--active-color);
+    }
+
+    .distinctive .close-button {
+      color: var(--active-color); /* barva křížku pouze v sekci s třídou distinctive */
+    }
+    
+    main {
+      scroll-behavior: auto; /* okamžité (ne hladké) přesunutí */
+      height: 100vh; /* nastavení výšky elementu na 100 % obrazovky */
+      }
+
+    header,
+    section {
+      height: 100vh; /* nastavení výšky elementu na 100 % obrazovky */
+      overflow: hidden; /* skryje přetékající obsah a nejsou tak vidět posuvníky */
+      box-sizing: border-box; /* změní způspb výpočtu rozměrů (do w a h navíc ještě započítá padding a border) */
+      padding: 0 1rem; /* žádné odsazení nahoře a dole, odsazení v pravo, levo 1rem */
+      scroll-snap-align: end; /* sekce se zarovná na spodní okraj viditelné části obrazovky */
+      position: relative; /* pozice křížků; umožní správné umístění absolutně pozicovaných prvků uvnitř sekce */
+    }
+    
+    h1 {
+      font-weight: normal; /* výchozí nastavení písma u h1 je bolt */
+      text-align: center;
+      margin-bottom: 0.5rem; /* spodní mezera na 0.5rem */
+    }
+    
+    header {
+      display: grid; /* element se stává kontejnerem mřížky, obsah lze rozvrhnout do řádků a sloupců */
+      gap: 1rem; /* rozestup mezi jednotlivými buňkami mřížky */
+      grid-template-rows: auto auto; /* dva řádky mřížky budou vysoké tak, jak je potřeba */
+      align-items: center; /* obsah buněk bude zarovnán vertikálně na střed */
+      justify-content: center; /* celý obsah mřížky bude vodorovně na střed */
+    }
+    
+    header nav {
+      align-self: start; /* vertikální zarovnání do mřížky nebo Flexboxu; start zarovná obsah k hornímu okraji */
+    }
+    
+    header h1 {
+      align-self: end; /* vertikální zarovnání do mřížky nebo Flexboxu; start zarovná obsah ke spodnímu okraji */
+    }
+    
+    menu {
+      display: flex; /* aktivuje flexbox pro horizontální uspořídíní */
+      gap: 2rem; /* mezera mezi tlačítky navigace */
+      list-style-type: none; /* odstranění výchozích odrážek seznamu */
+      padding: 0; /* odtraňuje výchozí vnitřní odsazení */
+      margin: 0; /* ostraňuje výchozí vnější odsazení  */
+    }
+    
+    menu li {
+      display: contents; /* nebude vykresleno jako viditelný blokový prvek */
+    }
+    
+    menu a {
+      display: flex; /* flexbox pro obsah uvnitř boxu */
+      min-width: 8rem; /* minimální šířka tlačítka */
+      justify-content: center; /* horizontální zarovnání textu na střed */
+      align-items: center; /* vertikální zarovnání textu na střed */
+      box-sizing: border-box; /* zahrnuje padding a border do výpočtu šířky a výšky */
+      border: 1px solid var(--primary-color); /* barva rámečku */
+      padding: .5rem 1rem; /* vnitřní odsazení tlačítka (vertikálně i horizontálně) */
+      border-radius: var(--border-radius); /* zaoblení rohů podle proměnné */
+      text-align: center; /* zarovnání textu uvnitř tlačítka */
+      font-size: 1rem; /* velikost písma */
+    }
+    
+    menu a:hover {
+      color: var(--active-color); /* barva textu při najetí myší na odkaz */
+      border-color: var(--active-color); /* barva rámečku při najetí myší */
+    }
+
+    .close-button {
+      position: absolute; /* umístí element relativně k nejbližšímu rodiči s position: relative */
+      top: 10px; /* vzdálenost od horního okraje */
+      right: 30px; /* vzdálenost od pravého okraje */
+      font-size: 1.5rem; /* velikost textu pro křížek */
+      color: var(--primary-color); /* barva křížku */
+    }
+
+    .close-button:hover {
+      color: var(--active-color); /* Změna barvy při najetí myší */
+    }
+
+		#game {
+			display: flex; /* aktivuje flexbox */
+			flex-direction: column; /* uspořádá obsah do sloupců */
+			justify-content: center; /* zarovná obsah vertikálně na střed */
+			align-items: center; /* zarovná obsah horizontálně na střed */
+			min-height: 100vh; /* výška sekce je 100 % výška obrazovky */
+			text-align: center; /* text uvnitř prvků je zarovnán na střed */
+      user-select: none; /* zákaz kopírování smajlíků */
+		}
+
+		#game h1 {
+			margin-bottom: 2rem; /* spodní mezera pod h1 na 2 rem */
+		}
+
+		.input-container {
+			display: flex; /* aktivace flexboxu input */
+			align-items: center; /* vertikální zarovnání na střed */
+			gap: 0.8rem; /* mezera mezi smajlíkem a inputem */
+			line-height: 8rem; /* výška řádku pro text v elementu */
+		}
+
+    input[name="answer"] {
+			font-family: 'Courier New', monospace; /* font na Courier New */
+			color: #ffffff; /* bílá barva zadávaného textu */
+			background-color: #000000; /* černé pozadí inputu */
+			border: 1px solid rgb(255, 0, 244); /* růžový rámeček s plnou (solid) čárou */
+			border-radius: 5px; /* zaoblené rohy rámečku */
+			font-size: 1em; /* velikost textu uvnitř inputu */
+			text-align: center; /* zarovnání textu v inputu na střed */
+			outline: none; /* odstraní modrý obrys při fokusování */
+			width: 80px; /* šířka inputu 80px */
+			height: 80px; /* výška inputu 80px */
+			padding: 5px; /* vnitřní odsazení rámcečku od textu */
+			box-sizing: border-box; /* zahrne padding a border do celkové šířky a výšky */
+    }
+
+    input[name="answer"]:focus {
+      cursor: text; /* nastaví kurzor na textový kurzor */
+    }
+
+    .correct {
+      color: rgb(255, 0, 244) !important; /* správná odpověď se přebarví na růžovou */
+    }
+
+    footer {
+      font-size: 0.8rem;
+      display: flex; /* aktivuje flexbox */
+      justify-content: center; /* horizontální zarovnání na střed */
+      align-items: center; /* vertikální zarovnání na střed */
+      gap: 0.5rem; /* mezera mezi obrázkem a textem */
+      background-color: transparent;
+      color: var(--active-color); /* barva textu */
+      padding: 1rem 0; /* odsazení od spodní části stránky */
+      width: 100%; /* Zabírá celou šířku stránky */
+      position: fixed; /* umístění patičky na spodní okraj viditelné části stránky */
+      bottom: 0; /* patička je připevněna ke spodnímu okraji */
+    }
+
+    footer img {
+      width: 100px; /* Nastaví šířku obrázku na 50px */
+      height: auto; /* Výška se přizpůsobí šířce pro zachování poměru stran */
+    }
+
+    #highlighted-symbol {
+      display: block; /* změní span na blokový prvek */
+      text-align: center; 
+      color: #ffffff;
+      margin: 0 auto;
+    }
+
+    .highlighted-symbol {
+      fill: #ffffff !important; /* Bílé písmo */
+      stroke: #ffffff !important; /* Bílý okraj klávesy */
+      stroke-width: 1px; /* Tloušťka obrysu */
+    }
+
+    /*klávesnice*/
+    #keyboard-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+  .keyboard-row {
+    display: flex;
+    gap: 5px;
+  }
+
+  .keyboard-key {
+    padding: 10px 15px;
+    border: 1px solid #fb00f1;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  </style>
+  <script> /* pokud uživatel zmáčkne "esc" vrátí se na homepage */
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') { 
+        window.location.hash = '#top'; 
+      }
+    });
+  </script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Shortcut Smileys</h1>
+      <nav>
+        <menu>
+          <li><a href="#shortcuts">shortcuts</a></li>
+          <li><a href="#game">game</a></li>
+          <li><a href="#scoreboard">score<br>board</a></li>
+        </menu>
+      </nav>
+    </header>
+    <section id="game">
+      <a href="#top" class="close-button">&#xd7;</a>
+      <h1>game</h1>
+			<body>
+				<p>? ! : ; + - = _ / „“ ‘ *<br>
+				% € $ # & @ () [] {} <></p>
+			</body>
+			<div class="input-container">
+				<label for="answer"></label>
+        <input type="text" name="answer" id="answer"/>
+			</div>
+      <script>
+        const questions = [':-)', '#_$', ';+/', '@_€', '<:]', ';*(']; // nepřepsatelná hodnota pro 'questions'
+        let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
+
+        document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // nastaví náhodného smajlíka jako první zadání
+
+        document.querySelector('a[href="#game"]').addEventListener('click', (event) => {
+        setTimeout(() => {
+          const answerInput = document.querySelector('input[name="answer"]');
+          if (answerInput) {
+            answerInput.focus(); // nastaví fokus na vstupní pole po přesunu do sekce #game
+        	}
+        }, 100); // zpoždění, aby stránka stihla přejít do sekce #game
+    });
+
+        document.querySelector('input[name="answer"]').addEventListener('input', (event) => {
+          const newVal = event.target.value; // odstraní bílé mezery kolem zadaného textu
+          if (newVal === currentQuestion) {
+              event.target.classList.add('correct'); // přidá třídu .correct pro růžovou barvu
+                
+              setTimeout(() => {
+                event.target.value = ''; // vymaže obsah vstupního pole
+                event.target.classList.remove('correct'); // odstraní růžovou barvu
+                currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // vygeneruje nového smajlíka
+                document.querySelector('label[for="answer"]').textContent = currentQuestion; // aktualizuje otázku
+              }, 1000); // 1000 ms = 1 sekunda
+          }
+        });
+    </script>
+    </section>
+    <section id="scoreboard" class="distinctive"> <!-- třída .correct -->
+      <a href="#top" class="close-button distinctive-color">&#xd7;</a>
+      <h1>scoreboard</h1>
+    </section>
+    <section id="shortcuts">
+      <a href="#top" class="close-button">&#xd7;</a>
+      <h1>shortcuts</h1>
+      <div id="keyboard-container"></div>
+      <body>
+        <button onclick="createKeyboard('default')">Základní klávesnice</button>
+        <button onclick="createKeyboard('special')">Speciální znaky</button>
+        <script>
+          const keyboardLayouts = {
+              "default": [
+                  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+                  ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+                  ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+                  ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "?"],
+                  ["Shift", "Space", "Enter"]
+              ],
+              "special": [
+                  ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"],
+                  ["[", "]", "{", "}", "<", ">", "/", "\\", "|", "="],
+                  ["€", "£", "¥", "¢", "§", "±", "µ", "¶", "©", "®"],
+                  ["Shift", "Space", "Enter"]
+              ]
+          };
+
+          function createKeyboard(layoutName) {
+              const container = document.getElementById("keyboard-container");
+              container.innerHTML = ""; // Vymaže předchozí klávesnici
+
+              const layout = keyboardLayouts[layoutName] || keyboardLayouts["default"];
+
+              layout.forEach(row => {
+                  let rowDiv = document.createElement("div");
+                  rowDiv.classList.add("keyboard-row");
+
+                  row.forEach(key => {
+                      let keyDiv = document.createElement("div");
+                      keyDiv.classList.add("keyboard-key");
+                      keyDiv.textContent = key;
+                      rowDiv.appendChild(keyDiv);
+                  });
+
+                  container.appendChild(rowDiv);
+              });
+          }
+
+          // Vykreslení výchozí klávesnice
+          createKeyboard("default");
+        </script>
+      </body>
+    </section>
+
+    </section>
+  <footer>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+      <img src="CC.png" alt="CC BY-NC-SA">
+    </a>
+    <p>Alice Ree Borovičková</p>
+</footer>
+</body>
+</html>
