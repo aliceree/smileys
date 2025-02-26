@@ -12,6 +12,7 @@
 | 2   |  Close Button jako speciální znak, ne jako písmeno + funkčnost tlačítka esc; zákaz kopírování smajlíků, tvorba GPTs
 | 2   |  tvorba klávesnice v .ai a vkládání .svg
 |2.5  |  sekce shortcuts: zmenšování klavesnice, návod na napsání znaků ?, !, zvýraznění kláves a pokus o kratší kód (smazán)
+| 2   |  sekce shortcuts: zvětšování stránky, přidávání nových klávesnic
 
 odkazy:
 https://smilecters.pages.dev
