@@ -13,10 +13,10 @@
 | 2   |  tvorba klávesnice v .ai a vkládání .svg
 | 2.5 |  sekce shortcuts: zmenšování klavesnice, návod na napsání znaků ?, !, zvýraznění kláves a pokus o kratší kód (smazán)
 | 3   |  sekce shortcuts: zvětšování stránky, přidávání nových klávesnic
+| 1   |  vytváření databáze smajlíků
 
 odkazy:
 https://smilecters.pages.dev
 https://dash.cloudflare.com/12adc4f2f6e755f1daf67b3038c3d6a5/pages/view/smilecters
-https://w3c.github.io/uievents-code/#key-alphanumeric-writing-system
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fencedframe
 https://specificity.keegan.st

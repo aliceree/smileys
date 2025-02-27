@@ -282,7 +282,7 @@
         <input type="text" name="answer" id="answer"/>
 			</div>
       <script>
-        const questions = [':-)', '#_$', ';+/', '@_€', '<:]', ';*(']; // nepřepsatelná hodnota pro 'questions'
+        const questions = [':-)', ':-(', ':-/', ':-*', ':-!', ':-?', ':-+', ':-=', ';-)', ';-(', ';-/', ';-*', ';-!', ';-?', ';-+', ';-=', '<:]', '<:>', '<:)', '<:(', '<:-', '<;]', '<;>', '<;=', '<;/', '>:/', '#_$', '#_%', '#_€', '#_&', '@_$', '@_€', '@_&', '@_%', '@_*', '$_#', '$_@', '*_@', '*_#', '*_&']; // nepřepsatelná hodnota pro 'questions'
         let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
 
         document.querySelector('label[for=answer]').textContent = `${currentQuestion}`; // nastaví náhodného smajlíka jako první zadání
