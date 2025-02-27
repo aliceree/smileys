@@ -8,11 +8,11 @@
 | 2   |  stylování homepage a fontu a pozadí
 | 2   |  rozdělení na smilecters.html, game.html, smilecters.css a přebarvení input dle designu
 | 5   |  předelání dle designu na fakan.cz (zpět do 1 HTML dokumentu), kontrola kódu a pochopení jeho principu
-|1.5  |  křížek (close button) + vymýšlení klávesnice
+| 1.5 |  křížek (close button) + vymýšlení klávesnice
 | 2   |  Close Button jako speciální znak, ne jako písmeno + funkčnost tlačítka esc; zákaz kopírování smajlíků, tvorba GPTs
 | 2   |  tvorba klávesnice v .ai a vkládání .svg
-|2.5  |  sekce shortcuts: zmenšování klavesnice, návod na napsání znaků ?, !, zvýraznění kláves a pokus o kratší kód (smazán)
-| 2   |  sekce shortcuts: zvětšování stránky, přidávání nových klávesnic
+| 2.5 |  sekce shortcuts: zmenšování klavesnice, návod na napsání znaků ?, !, zvýraznění kláves a pokus o kratší kód (smazán)
+| 3   |  sekce shortcuts: zvětšování stránky, přidávání nových klávesnic
 
 odkazy:
 https://smilecters.pages.dev
