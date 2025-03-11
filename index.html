@@ -289,6 +289,7 @@
     <script>
       const questions = [ ':-)', ':-(', ':-/', ':-*', ':-!', ':-?', ':-+', ':-=', ';-)', ';-(', ';-/', ';-*', ';-!', ';-?', ';-+', ';-=', '<:]', '<:>', '<:)', '<:(', '<:-', '<;]', '<;>', '<;=', '<;/', '>:/', '#_$', '#_%', '#_€', '#_&', '@_$', '@_€', '@_&', '@_%', '@_*', '$_#', '$_@', '*_@', '*_#', '*_&' ]; // nepřepsatelná hodnota pro 'questions'
       let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
+      //let score = 0;
       
       document.querySelector('label[for=answer]').textContent = `${ currentQuestion }`; // nastaví náhodného smajlíka jako první zadání
       
@@ -305,6 +306,25 @@
         const newVal = event.target.value; // odstraní bílé mezery kolem zadaného textu
         if (newVal === currentQuestion) {
           event.target.classList.add('correct'); // přidá třídu .correct pro růžovou barvu
+          // score++; // zvýší skóre o 1
+          
+          // once score is 5 or more, ask user to submit their nickname, send post request to server and scrool to scoreboard
+          // if (score >= 5) {
+          //   const nickname = prompt('Congratulations! You have reached 5 points. Please enter your nickname to submit your score.');
+          //   if (nickname) {
+          //     fetch('https://api.example.com/scoreboard', {
+          //       method: 'POST',
+          //       headers: {
+          //         'Content-Type': 'application/json'
+          //       },
+          //       body: JSON.stringify({
+          //         nickname,
+          //         score
+          //       })
+          //     });
+          //   }
+          //   window.location.hash = '#scoreboard';
+          // }
           
           setTimeout(() => {
             event.target.value = ''; // vymaže obsah vstupního pole
