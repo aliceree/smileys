@@ -292,9 +292,11 @@
       const questions = [ ':-)', ':-(', ':-/', ':-*', ':-!', ':-?', ':-+', ':-=', ';-)', ';-(', ';-/', ';-*', ';-!', ';-?', ';-+', ';-=', '<:]', '<:>', '<:)', '<:(', '<:-', '<;]', '<;>', '<;=', '<;/', '>:/', '#_$', '#_%', '#_€', '#_&', '@_$', '@_€', '@_&', '@_%', '@_*', '$_#', '$_@', '*_@', '*_#', '*_&' ]; // nepřepsatelná hodnota pro 'questions'
       let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
       let score = 0; // počáteční skóre
-      
+      let timerStarted = false; // kontrola, zda byl odpočet již spuštěn
+      let timerInterval; // proměnná pro interval odpočtu
+
       document.querySelector('label[for=answer]').textContent = `${ currentQuestion }`; // nastaví náhodného smajlíka jako první zadání
-      
+
       document.querySelector('a[href="#game"]').addEventListener('click', (event) => {
         setTimeout(() => {
           const answerInput = document.querySelector('input[name="answer"]');
@@ -303,32 +305,38 @@
           }
         }, 100); // zpoždění, aby stránka stihla přejít do sekce #game
       });
-      
+
       document.querySelector('input[name="answer"]').addEventListener('input', (event) => {
         const newVal = event.target.value; // odstraní bílé mezery kolem zadaného textu
+
+        // Spuštění odpočtu při zadání prvního znaku
+        if (!timerStarted && newVal.length > 0) {
+          timerStarted = true;
+          let timeLeft = 30; // počáteční čas
+          const timerElement = document.getElementById('timer');
+          timerElement.textContent = timeLeft;
+
+          timerInterval = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+              clearInterval(timerInterval); // zastaví odpočet
+              alert('Čas vypršel!'); // upozorní uživatele
+              event.target.value = ''; // vymaže vstupní pole
+              event.target.classList.remove('correct'); // odstraní růžovou barvu
+              currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // vygeneruje nového smajlíka
+              document.querySelector('label[for="answer"]').textContent = currentQuestion; // aktualizuje otázku
+              timerStarted = false; // resetuje stav odpočtu
+            }
+          }, 1000); // odpočet po 1 sekundě
+        }
+
         if (newVal === currentQuestion) {
           event.target.classList.add('correct'); // přidá třídu .correct pro růžovou barvu
           score++; // zvýší skóre o 1
-          console.log(score); 
-          // once score is 5 or more, ask user to submit their nickname, send post request to server and scrool to scoreboard
-          // if (score >= 5) {
-          //   const nickname = prompt('Congratulations! You have reached 5 points. Please enter your nickname to submit your score.');
-          //   if (nickname) {
-          //     fetch('https://api.example.com/scoreboard', {
-          //       method: 'POST',
-          //       headers: {
-          //         'Content-Type': 'application/json'
-        
-          //       },
-          //       body: JSON.stringify({
-          //         nickname,
-          //         score
-          //       })
-          //     });
-          //   }
-          //   window.location.hash = '#scoreboard';
-          // }
-          
+          console.log(score);
+
           setTimeout(() => {
             event.target.value = ''; // vymaže obsah vstupního pole
             event.target.classList.remove('correct'); // odstraní růžovou barvu
