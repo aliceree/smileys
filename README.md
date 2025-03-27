@@ -14,6 +14,7 @@
 | 2.5 |  sekce shortcuts: zmenšování klavesnice, návod na napsání znaků ?, !, zvýraznění kláves a pokus o kratší kód (smazán)
 | 3   |  sekce shortcuts: zvětšování stránky, přidávání nových klávesnic
 | 1   |  vytváření databáze smajlíků
+| 0.5 |  přičítání bodu za správnou odpověď
 
 odkazy:
 https://smilecters.pages.dev
