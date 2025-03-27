@@ -322,7 +322,7 @@
 
             if (timeLeft <= 0) {
               clearInterval(timerInterval); // zastaví odpočet
-              alert('Čas vypršel!'); // upozorní uživatele
+              alert('You have finished the game! If you want to save your score, write your name.'); // upozorní uživatele
               event.target.value = ''; // vymaže vstupní pole
               event.target.classList.remove('correct'); // odstraní růžovou barvu
               currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // vygeneruje nového smajlíka
