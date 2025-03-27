@@ -281,8 +281,6 @@
     <body>
     <p>? ! : ; + - = _ / „“ *<br>
       % € $ # & @ () [] {} <></p>
-    <br>
-    <div id="timer">30</div>
     </body>
     <div class="input-container">
       <label for="answer"></label>
@@ -291,7 +289,7 @@
     <script>
       const questions = [ ':-)', ':-(', ':-/', ':-*', ':-!', ':-?', ':-+', ':-=', ';-)', ';-(', ';-/', ';-*', ';-!', ';-?', ';-+', ';-=', '<:]', '<:>', '<:)', '<:(', '<:-', '<;]', '<;>', '<;=', '<;/', '>:/', '#_$', '#_%', '#_€', '#_&', '@_$', '@_€', '@_&', '@_%', '@_*', '$_#', '$_@', '*_@', '*_#', '*_&' ]; // nepřepsatelná hodnota pro 'questions'
       let currentQuestion = questions[Math.floor(Math.random() * questions.length)]; // generování náhodného smajlíka
-      let score = 0; // počáteční skóre
+      let score = 0;
       
       document.querySelector('label[for=answer]').textContent = `${ currentQuestion }`; // nastaví náhodného smajlíka jako první zadání
       
