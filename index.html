@@ -254,6 +254,30 @@
       max-width: 70%;
       margin-bottom: 1.5rem;
     }
+
+    /* stylování hry */
+    #game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertikální zarovnání na střed */
+    align-items: center; /* Horizontální zarovnání na střed */
+    min-height: 100vh; /* Výška sekce je 100 % výšky obrazovky */
+    position: relative; /* Umožní umístění časovače dole */
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: row; /* Zarovná smajlík a vstupní pole vedle sebe */
+    align-items: center; /* Vertikální zarovnání na střed */
+    gap: 1rem; /* Mezera mezi smajlíkem a vstupním polem */
+  }
+
+  #timer {
+    position: absolute;
+    bottom: 1rem; /* Umístí časovač 1rem od spodního okraje */
+    font-size: 1.2rem; /* Velikost textu časovače */
+    color: #333; /* Barva textu časovače */
+  }
   </style>
   <script> /* pokud uživatel zmáčkne "esc" vrátí se na homepage */
   document.addEventListener('keydown', (event) => {
@@ -296,7 +320,7 @@
         setTimeout(() => {
           const answerInput = document.querySelector('input[name="answer"]');
           if (answerInput) {
-            answerInput.focus(); // nastaví fokus na vstupní pole po přesunu do sekce #game
+            answerInput.focus(); // nastaví fokus na vstupní pole
           }
         }, 100); // zpoždění, aby stránka stihla přejít do sekce #game
       });
