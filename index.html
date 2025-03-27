@@ -277,12 +277,7 @@
   </header>
   <section id="game">
     <a href="#top" class="close-button">&#xd7;</a>
-    <h1>game</h1>
     <body>
-    <p>? ! : ; + - = _ / „“ *<br>
-      % € $ # & @ () [] {} <></p>
-    <br>
-    <div id="timer">30</div>
     </body>
     <div class="input-container">
       <label for="answer"></label>
@@ -312,16 +307,22 @@
         // Spuštění odpočtu při zadání prvního znaku
         if (!timerStarted && newVal.length > 0) {
           timerStarted = true;
-          let timeLeft = 30; // počáteční čas
+          let timeLeft = 30000; // počáteční čas v milisekundách (30 sekund)
+          const formatTime = (time) => {
+            const seconds = Math.floor(time / 1000);
+            const milliseconds = Math.floor((time % 1000) / 10); // pouze dvě číslice
+            return `timer: ${seconds}:${milliseconds.toString().padStart(2, '0')}`;
+          };
           const timerElement = document.getElementById('timer');
           timerElement.textContent = timeLeft;
 
           timerInterval = setInterval(() => {
-            timeLeft--;
-            timerElement.textContent = timeLeft;
+            timeLeft -= 10; // odečítá 10 ms
+            timerElement.textContent = formatTime(timeLeft);
 
             if (timeLeft <= 0) {
               clearInterval(timerInterval); // zastaví odpočet
+              timerElement.textContent = 'timer: 0:00'; // nastaví čas na 0
               alert(`You have finished the game! If you want to save your score of ${score} points, write your name.`); // upozorní uživatele se skóre
               score = 0; // resetuje skóre
               event.target.value = ''; // vymaže vstupní pole
@@ -330,7 +331,7 @@
               document.querySelector('label[for="answer"]').textContent = currentQuestion; // aktualizuje otázku
               timerStarted = false; // resetuje stav odpočtu
             }
-          }, 1000); // odpočet po 1 sekundě
+          }, 10); // odpočítává každých 10 ms
         }
 
         if (newVal === currentQuestion) {
@@ -347,6 +348,7 @@
         }
       });
     </script>
+  <div id="timer">timer: 30:00</div>
   </section>
   <section id="scoreboard" class="distinctive"> <!-- třída .correct -->
     <a href="#top" class="close-button distinctive-color">&#xd7;</a>
