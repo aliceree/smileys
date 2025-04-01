@@ -292,6 +292,27 @@
   <header>
     <h1>Shortcut Smileys</h1>
     <nav>
+      <script>
+        // Přidání event listeneru pro klávesnici
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 's') {
+            window.location.hash = '#shortcuts'; // Přesměrování na sekci #shortcuts
+          } else if (event.key === 'g') {
+            window.location.hash = '#game'; // Přesměrování na sekci #game
+        
+            // Nastavení focusu na vstupní pole po přechodu do sekce #game
+            setTimeout(() => {
+              const answerInput = document.querySelector('input[name="answer"]');
+              if (answerInput) {
+                answerInput.value = ''; // Vyčistí vstupní pole
+                answerInput.focus(); // Nastaví focus na vstupní pole
+              }
+            }, 100); // Zpoždění pro zajištění, že stránka přejde do sekce #game
+          } else if (event.key === 'b') {
+            window.location.hash = '#scoreboard'; // Přesměrování na sekci #scoreboard
+          }
+        });
+      </script>
       <menu>
         <li><a href="#shortcuts">shortcuts</a></li>
         <li><a href="#game">game</a></li>
