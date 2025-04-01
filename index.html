@@ -338,10 +338,10 @@
         }
       };
 
-      // Detekce kliknutí na křížek
+      // po stisknutí křížku (odchod ze hry) se zastaví odpočet hry
       document.querySelector('.close-button').addEventListener('click', stopTimer);
 
-      // Detekce stisknutí klávesy Escape
+      // po stisknutí klávesnice esc se zastaví odpočet hry
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
           stopTimer();
@@ -351,13 +351,13 @@
       document.querySelector('input[name="answer"]').addEventListener('input', (event) => {
         const newVal = event.target.value; // odstraní bílé mezery kolem zadaného textu
 
-        // Spuštění odpočtu při zadání prvního znaku
+        // odpočet se spustí při zadání prvního znaku hry
         if (!timerStarted && newVal.length > 0) {
           timerStarted = true;
-          let timeLeft = 30000; // počáteční čas v milisekundách (30 sekund)
+          let timeLeft = 10000; // počáteční čas v milisekundách (30 sekund) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           const formatTime = (time) => {
             const seconds = Math.floor(time / 1000);
-            const milliseconds = Math.floor((time % 1000) / 10); // pouze dvě číslice
+            const milliseconds = Math.floor((time % 1000) / 10); // uvedení sekund
             return `timer: ${seconds}:${milliseconds.toString().padStart(2, '0')}`;
           };
           const timerElement = document.getElementById('timer');
@@ -370,7 +370,15 @@
             if (timeLeft <= 0) {
               clearInterval(timerInterval); // zastaví odpočet
               timerElement.textContent = 'timer: 0:00'; // nastaví čas na 0
-              alert(`You have finished the game! If you want to save your score of ${score} points, write your name.`); // upozorní uživatele se skóre
+            
+              // Zobrazí prompt pro zadání jména
+              const playerName = prompt(`You have finished the game! If you want to save your score of ${score} points, write your name:`);
+            
+              if (playerName) {
+                console.log(`Player ${playerName} scored ${score} points.`);
+                // Zde můžete přidat logiku pro uložení skóre a jména hráče
+              }
+            
               score = 0; // resetuje skóre
               event.target.value = ''; // vymaže vstupní pole
               event.target.classList.remove('correct'); // odstraní růžovou barvu

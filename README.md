@@ -22,3 +22,6 @@ https://smilecters.pages.dev
 https://dash.cloudflare.com/12adc4f2f6e755f1daf67b3038c3d6a5/pages/view/smilecters
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fencedframe
 https://specificity.keegan.st
+
+nevyřešené úkoly:
+omezit množství znaků hráčova jména
