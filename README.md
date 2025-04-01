@@ -15,6 +15,7 @@
 | 3   |  sekce shortcuts: zvětšování stránky, přidávání nových klávesnic
 | 1   |  vytváření databáze smajlíků
 | 2   |  odpočet času + přičítání bodů
+|
 
 odkazy:
 https://smilecters.pages.dev

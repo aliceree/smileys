@@ -316,13 +316,36 @@
 
       document.querySelector('label[for=answer]').textContent = `${ currentQuestion }`; // nastaví náhodného smajlíka jako první zadání
 
+      // Nastavení zaměření na vstupní pole a vyčištění pole při otevření sekce hry
       document.querySelector('a[href="#game"]').addEventListener('click', (event) => {
         setTimeout(() => {
           const answerInput = document.querySelector('input[name="answer"]');
           if (answerInput) {
+            answerInput.value = ''; // vyčistí vstupní pole
             answerInput.focus(); // nastaví fokus na vstupní pole
           }
         }, 100); // zpoždění, aby stránka stihla přejít do sekce #game
+      });
+
+      // Zastavení a vynulování odpočtu při odchodu ze sekce #game
+      const stopTimer = () => {
+        if (timerInterval) {
+          clearInterval(timerInterval); // zastaví odpočet
+          timerInterval = null;
+          timerStarted = false; // resetuje stav odpočtu
+          const timerElement = document.getElementById('timer');
+          timerElement.textContent = 'timer: 30:00'; // resetuje časovač na výchozí hodnotu
+        }
+      };
+
+      // Detekce kliknutí na křížek
+      document.querySelector('.close-button').addEventListener('click', stopTimer);
+
+      // Detekce stisknutí klávesy Escape
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          stopTimer();
+        }
       });
 
       document.querySelector('input[name="answer"]').addEventListener('input', (event) => {
@@ -338,7 +361,7 @@
             return `timer: ${seconds}:${milliseconds.toString().padStart(2, '0')}`;
           };
           const timerElement = document.getElementById('timer');
-          timerElement.textContent = timeLeft;
+          timerElement.textContent = formatTime(timeLeft);
 
           timerInterval = setInterval(() => {
             timeLeft -= 10; // odečítá 10 ms
