@@ -451,9 +451,7 @@
           }, 1000); // 1000 ms = 1 sekunda
         }
       });
-    </script>
-  <div id="timer">timer: 30:00</div>
-  <script>
+
     // Funkce pro odeslání jména a skóre do Workers KV
     async function sendScoreToKV(playerName, playerScore) {
       console.log('Sending score to KV:', { playerName, playerScore }); // Ladící výstup
@@ -519,7 +517,8 @@
 
     // Načtení tabulky při načtení stránky
     document.addEventListener('DOMContentLoaded', loadScoreboard);
-  </script>
+    </script>
+  <div id="timer">timer: 30:00</div>
   </section>
  <section id="scoreboard" class="distinctive">
     <a href="#top" class="close-button distinctive-color">&#xd7;</a>
