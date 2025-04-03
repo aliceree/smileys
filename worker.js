@@ -26,11 +26,8 @@ export default {
           });
         }
 
-        // Přidání času dokončení hry
-        const timestamp = Date.now();
-
         // Uložení dat do KV Storage
-        await env['name-database'].put(name, JSON.stringify({ score, timestamp }));
+        await env['name-database'].put(name, JSON.stringify({ score }));
 
         return new Response('Score successfully saved!', {
           status: 200,
@@ -48,23 +45,19 @@ export default {
     // Zpracování GET požadavků na endpoint /get-scores
     if (url.pathname === '/get-scores') {
       try {
-        const scores = await env['name-database'].list(); // Načtení všech klíčů z KV
-        const result = [];
+        const scores = await env['name-database'].list(); // Načtení všech klíčů a hodnot z KV
+        const result = {};
 
         for (const key of scores.keys) {
           const value = await env['name-database'].get(key.name);
-          const parsedValue = JSON.parse(value);
-          result.push({ name: key.name, ...parsedValue });
+          result[key.name] = JSON.parse(value).score; // Předpokládáme, že hodnota je JSON s klíčem `score`
         }
-
-        // Seřazení podle času (nejnovější nahoře)
-        result.sort((a, b) => b.timestamp - a.timestamp);
 
         return new Response(JSON.stringify(result), {
           status: 200,
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': '*', // Povolení požadavků z jakéhokoli původu
           },
         });
       } catch (error) {

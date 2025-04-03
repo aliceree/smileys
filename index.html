@@ -349,14 +349,14 @@
           throw new Error('Failed to fetch scores');
         }
 
-        const scores = await response.json(); // Data jsou nyní pole objektů
+        const scores = await response.json(); // Předpokládáme, že data jsou ve formátu JSON
         const tableBody = document.querySelector('#scoreboard-table tbody');
 
         // Vyčištění tabulky před přidáním nových dat
         tableBody.innerHTML = '';
 
         // Iterace přes data a vytvoření řádků tabulky
-        for (const { name, score } of scores) {
+        for (const [name, score] of Object.entries(scores)) {
           const row = document.createElement('tr');
 
           const nameCell = document.createElement('td');
