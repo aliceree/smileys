@@ -1,0 +1,6 @@
+name = "smilecters"
+type = "javascript"
+
+kv_namespaces = [
+  { binding = "name-database", id = "0c5793104d3846b1aed1d2a9451886be" }
+]
