@@ -2,6 +2,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // Zpracování požadavků na endpoint /save-score
     if (request.method === 'POST' && url.pathname === '/save-score') {
       try {
         const { name, score } = await request.json();
@@ -29,6 +30,7 @@ export default {
       }
     }
 
+    // Vrácení chyby pro všechny ostatní požadavky
     return new Response('Not Found', {
       status: 404,
       headers: { 'Access-Control-Allow-Origin': '*' },
