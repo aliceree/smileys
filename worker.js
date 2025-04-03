@@ -8,13 +8,13 @@ export default {
         status: 204,
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type',
         },
       });
     }
 
-    // Zpracování POST požadavků na endpoint /save-score
+    // Endpoint pro uložení skóre
     if (request.method === 'POST' && url.pathname === '/save-score') {
       try {
         const { name, score } = await request.json();
@@ -36,6 +36,33 @@ export default {
       } catch (error) {
         console.error('Error saving score:', error);
         return new Response('Failed to save score', {
+          status: 500,
+          headers: { 'Access-Control-Allow-Origin': '*' },
+        });
+      }
+    }
+
+    // Endpoint pro načtení skóre
+    if (request.method === 'GET' && url.pathname === '/get-scores') {
+      try {
+        const keys = await env['name-database'].list();
+        const scores = {};
+
+        for (const key of keys.keys) {
+          const value = await env['name-database'].get(key.name);
+          scores[key.name] = JSON.parse(value);
+        }
+
+        return new Response(JSON.stringify(scores), {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        });
+      } catch (error) {
+        console.error('Error fetching scores:', error);
+        return new Response('Failed to fetch scores', {
           status: 500,
           headers: { 'Access-Control-Allow-Origin': '*' },
         });
