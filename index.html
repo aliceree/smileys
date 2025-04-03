@@ -55,6 +55,7 @@
     main {
       scroll-behavior: auto; /* okamžité (ne hladké) přesunutí */
       height: 100vh; /* nastavení výšky elementu na 100 % obrazovky */
+      max-width: 1200px; /* Nastaví maximální šířku obsahu */
     }
     
     header,
@@ -257,27 +258,49 @@
 
     /* stylování hry */
     #game {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertikální zarovnání na střed */
-    align-items: center; /* Horizontální zarovnání na střed */
-    min-height: 100vh; /* Výška sekce je 100 % výšky obrazovky */
-    position: relative; /* Umožní umístění časovače dole */
-  }
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Vertikální zarovnání na střed */
+      align-items: center; /* Horizontální zarovnání na střed */
+      min-height: 100vh; /* Výška sekce je 100 % výšky obrazovky */
+      position: relative; /* Umožní umístění časovače dole */
+    }
 
-  .input-container {
-    display: flex;
-    flex-direction: row; /* Zarovná smajlík a vstupní pole vedle sebe */
-    align-items: center; /* Vertikální zarovnání na střed */
-    gap: 1rem; /* Mezera mezi smajlíkem a vstupním polem */
-  }
+    .input-container {
+      display: flex;
+      flex-direction: row; /* Zarovná smajlík a vstupní pole vedle sebe */
+      align-items: center; /* Vertikální zarovnání na střed */
+      gap: 1rem; /* Mezera mezi smajlíkem a vstupním polem */
+    }
 
-  #timer {
-    position: absolute;
-    bottom: 1rem; /* Umístí časovač 1rem od spodního okraje */
-    font-size: 1.2rem; /* Velikost textu časovače */
-    color: #ffffff; /* Barva textu časovače */
-  }
+    #timer {
+      position: absolute;
+      bottom: 1rem; /* Umístí časovač 1rem od spodního okraje */
+      font-size: 1.2rem; /* Velikost textu časovače */
+      color: #ffffff; /* Barva textu časovače */
+    }
+
+    /* stylování scoreboard */
+    #scoreboard-table {
+      width: 50%; /* Tabulka zabírá celou šířku sekce */
+      border-collapse: collapse; /* Odstraní mezery mezi buňkami */
+      margin: 0 auto; /* Horizontálně vycentruje tabulku */
+      table-layout: fixed; /* Umožní pevné rozložení šířek sloupců */
+    }
+
+    #scoreboard-table td {
+      padding: 0.5rem 1rem; /* Přidá odsazení: 0.5rem nahoře/dole, 1rem vlevo/vpravo */
+      text-align: left; /* Zarovná text vlevo */
+      vertical-align: middle; /* Vertikální zarovnání textu na střed */
+    }
+
+    #scoreboard-table td:first-child {
+      width: 70%; /* První sloupec (jména) zabírá 70 % šířky tabulky */
+    }
+
+    #scoreboard-table td:last-child {
+      width: 30%; /* Druhý sloupec (skóre) zabírá 30 % šířky tabulky */
+    }
   </style>
   <script> /* pokud uživatel zmáčkne "esc" vrátí se na homepage */
   document.addEventListener('keydown', (event) => {
@@ -473,9 +496,22 @@
     </script>
   <div id="timer">timer: 30:00</div>
   </section>
-  <section id="scoreboard" class="distinctive"> <!-- třída .correct -->
+ <section id="scoreboard" class="distinctive">
     <a href="#top" class="close-button distinctive-color">&#xd7;</a>
     <h1>scoreboard</h1>
+    <table id="scoreboard-table">
+      <tbody>
+        <tr>
+          <td>Karel</td>
+          <td>7 points</td>
+        <!-- Dynamicky přidané řádky -->
+      </tbody>
+      <tbody>
+        <tr>
+          <td>Antonín</td>
+          <td>5 points</td>
+      </tbody>
+    </table>
   </section>
   <section id="shortcuts">
     <a href="#top" class="close-button">&#xd7;</a>
