@@ -26,3 +26,4 @@ https://specificity.keegan.st
 nevyřešené úkoly:
 omezit množství znaků hráčova jména
 umístit jména a body hráčů na střed stránky
+řazení jmen hráču dle času, kdy jméno uložili

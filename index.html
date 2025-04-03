@@ -575,21 +575,24 @@
           throw new Error('Failed to fetch scores');
         }
 
-        const scores = await response.json(); // Předpokládáme, že data jsou ve formátu JSON
+        const scores = await response.json(); // Data jsou ve formátu JSON
         const tableBody = document.querySelector('#scoreboard-table tbody');
 
         // Vyčištění tabulky před přidáním nových dat
         tableBody.innerHTML = '';
 
-        // Iterace přes data a vytvoření řádků tabulky
-        for (const [name, score] of Object.entries(scores)) {
+        // Převod objektu na pole a seřazení podle skóre (od nejvyššího po nejnižší)
+        const sortedScores = Object.entries(scores).sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
+
+        // Iterace přes seřazená data a vytvoření řádků tabulky
+        for (const [name, score] of sortedScores) {
           const row = document.createElement('tr');
 
           const nameCell = document.createElement('td');
           nameCell.textContent = name;
 
           const scoreCell = document.createElement('td');
-          scoreCell.textContent = score;
+          scoreCell.textContent = `${score} points`;
 
           row.appendChild(nameCell);
           row.appendChild(scoreCell);
