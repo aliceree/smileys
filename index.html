@@ -290,6 +290,7 @@
 
     #scoreboard-table tbody {
       padding: 1rem 1rem; /* Přidá odsazení: 0.5rem nahoře/dole, 1rem vlevo/vpravo */
+      line-height: 1.5rem; /* Zvýšení výšky řádku na 2rem */
       text-align: left; /* Zarovná text vlevo */
       vertical-align: middle; /* Vertikální zarovnání textu na střed */
     }
@@ -300,6 +301,22 @@
 
     #scoreboard-table td:last-child {
       width: 30%; /* Druhý sloupec (skóre) zabírá 30 % šířky tabulky */
+    }
+    #scoreboard {
+      max-height: 80vh; /* Maximální výška sekce scoreboard na 80 % výšky okna */
+      overflow-y: auto; /* Povolení vertikálního posouvání obsahu */
+      padding-right: 1rem; /* Přidání odsazení pro lepší čitelnost vedle scrollbar */
+    }
+
+    #scoreboard-table {
+      width: 100%; /* Tabulka zabírá celou šířku sekce */
+      border-collapse: collapse; /* Odstraní mezery mezi buňkami */
+    }
+
+    #scoreboard-table td {
+      padding: 1rem; /* Přidá odsazení uvnitř buněk */
+      text-align: left; /* Zarovná text vlevo */
+      border: 1px solid var(--active-color); /* Přidá rámeček kolem buněk */
     }
   </style>
   <script> /* pokud uživatel zmáčkne "esc" vrátí se na homepage */
@@ -356,7 +373,7 @@
           nameCell.textContent = name;
 
           const scoreCell = document.createElement('td');
-          scoreCell.textContent = score;
+          scoreCell.textContent = `${score} points`;
 
           row.appendChild(nameCell);
           row.appendChild(scoreCell);
