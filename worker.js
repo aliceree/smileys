@@ -42,6 +42,21 @@ export default {
       }
     }
 
+    // Zpracování GET požadavků na endpoint /get-scores
+    if (url.pathname === '/get-scores') {
+      const scores = await env['name-database'].list(); // Načtení všech klíčů a hodnot z KV
+      const result = {};
+
+      for (const key of scores.keys) {
+        const value = await env['name-database'].get(key.name);
+        result[key.name] = JSON.parse(value).score; // Předpokládáme, že hodnota je JSON s klíčem `score`
+      }
+
+      return new Response(JSON.stringify(result), {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
     // Vrácení chyby pro všechny ostatní požadavky
     return new Response('Not Found', {
       status: 404,
