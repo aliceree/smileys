@@ -1,8 +1,7 @@
 export default {
   async fetch(request, env) {
-    if (request.method === 'POST') {
+    if (request.method === 'POST' && new URL(request.url).pathname === '/save-score') {
       try {
-        // Získání dat z těla požadavku
         const { name, score } = await request.json();
 
         if (!name || !score) {
@@ -19,7 +18,6 @@ export default {
       }
     }
 
-    // Pokud metoda není POST, vrátí chybu
     return new Response('Method not allowed', { status: 405 });
   },
 };
