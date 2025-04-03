@@ -8,7 +8,7 @@ export default {
         status: 204,
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type',
         },
       });
@@ -44,17 +44,29 @@ export default {
 
     // Zpracování GET požadavků na endpoint /get-scores
     if (url.pathname === '/get-scores') {
-      const scores = await env['name-database'].list(); // Načtení všech klíčů a hodnot z KV
-      const result = {};
+      try {
+        const scores = await env['name-database'].list(); // Načtení všech klíčů a hodnot z KV
+        const result = {};
 
-      for (const key of scores.keys) {
-        const value = await env['name-database'].get(key.name);
-        result[key.name] = JSON.parse(value).score; // Předpokládáme, že hodnota je JSON s klíčem `score`
+        for (const key of scores.keys) {
+          const value = await env['name-database'].get(key.name);
+          result[key.name] = JSON.parse(value).score; // Předpokládáme, že hodnota je JSON s klíčem `score`
+        }
+
+        return new Response(JSON.stringify(result), {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*', // Povolení požadavků z jakéhokoli původu
+          },
+        });
+      } catch (error) {
+        console.error('Error fetching scores:', error);
+        return new Response('Failed to fetch scores', {
+          status: 500,
+          headers: { 'Access-Control-Allow-Origin': '*' },
+        });
       }
-
-      return new Response(JSON.stringify(result), {
-        headers: { 'Content-Type': 'application/json' },
-      });
     }
 
     // Vrácení chyby pro všechny ostatní požadavky
