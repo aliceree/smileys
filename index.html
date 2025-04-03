@@ -333,35 +333,6 @@
       }
     }
   </script>
-  <script>
-    async function loadScores() {
-      try {
-        const response = await fetch('https://smilecters-backend.al-borovickova.workers.dev/get-scores');
-        if (response.ok) {
-          const scores = await response.json();
-          const scoreboard = document.getElementById('scoreboard');
-          scoreboard.innerHTML = ''; // Vyčistí obsah scoreboardu
-
-          // Seřadí skóre podle hodnoty (od nejvyššího po nejnižší)
-          const sortedScores = Object.entries(scores).sort(([, a], [, b]) => b.score - a.score);
-
-          // Vytvoří seznam skóre
-          sortedScores.forEach(([name, { score }]) => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `${name}: ${score}`;
-            scoreboard.appendChild(listItem);
-          });
-        } else {
-          console.error('Failed to load scores:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error while loading scores:', error);
-      }
-    }
-
-    // Načte skóre při načtení stránky
-    document.addEventListener('DOMContentLoaded', loadScores);
-  </script>
 </head>
 <body>
 <main>
@@ -392,7 +363,7 @@
       <menu>
         <li><a href="#shortcuts">shortcuts</a></li>
         <li><a href="#game">game</a></li>
-        <li><a href="#scoreboard">scoreboard</a></li>
+        <li><a href="#scoreboard">score<br>board</a></li>
       </menu>
     </nav>
   </header>
@@ -503,15 +474,9 @@
   <div id="timer">timer: 30:00</div>
   </section>
   <section id="scoreboard" class="distinctive"> <!-- třída .correct -->
-      <a href="#top" class="close-button distinctive-color">&#xd7;</a>
-      <h1>scoreboard</h1>
-      <section id="scoreboard-section">
-        <h2>Scoreboard</h2>
-        <ul id="scoreboard">
-          <!-- Skóre se načtou sem -->
-        </ul>
-      </section>
-    </section>
+    <a href="#top" class="close-button distinctive-color">&#xd7;</a>
+    <h1>scoreboard</h1>
+  </section>
   <section id="shortcuts">
     <a href="#top" class="close-button">&#xd7;</a>
     <h1>shortcuts</h1>
