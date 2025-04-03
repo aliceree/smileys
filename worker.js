@@ -1,10 +1,13 @@
 export default {
   async fetch(request, env) {
-    if (request.method === 'POST' && new URL(request.url).pathname === '/save-score') {
+    const url = new URL(request.url);
+
+    // Zpracování požadavků na endpoint /save-score
+    if (request.method === 'POST' && url.pathname === '/save-score') {
       try {
         const { name, score } = await request.json();
 
-        if (!name || !score) {
+        if (!name || typeof score !== 'number') {
           return new Response('Invalid data', { status: 400 });
         }
 
@@ -18,6 +21,7 @@ export default {
       }
     }
 
-    return new Response('Method not allowed', { status: 405 });
+    // Vrácení chyby pro všechny ostatní požadavky
+    return new Response('Not Found', { status: 404 });
   },
 };
