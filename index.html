@@ -532,6 +532,70 @@
       });
     </script>
   <div id="timer">timer: 30:00</div>
+  <script>
+    // Funkce pro odeslání jména a skóre do Workers KV
+    async function sendScoreToKV(playerName, playerScore) {
+      console.log('Sending score to KV:', { playerName, playerScore }); // Ladící výstup
+      try {
+        const response = await fetch('https://smilecters-backend.al-borovickova.workers.dev/save-score', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: playerName,
+            score: playerScore,
+          }),
+        });
+
+        if (response.ok) {
+          console.log('Score successfully saved!');
+          loadScoreboard(); // Dynamicky aktualizuje tabulku po odeslání skóre
+        } else {
+          console.error('Failed to save score:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error while sending score:', error);
+      }
+    }
+
+    // Funkce pro načtení dat z KV a aktualizaci tabulky
+    async function loadScoreboard() {
+      try {
+        // Načtení dat z KV přes API endpoint
+        const response = await fetch('https://smilecters-backend.al-borovickova.workers.dev/get-scores');
+        if (!response.ok) {
+          throw new Error('Failed to fetch scores');
+        }
+
+        const scores = await response.json(); // Předpokládáme, že data jsou ve formátu JSON
+        const tableBody = document.querySelector('#scoreboard-table tbody');
+
+        // Vyčištění tabulky před přidáním nových dat
+        tableBody.innerHTML = '';
+
+        // Iterace přes data a vytvoření řádků tabulky
+        for (const [name, score] of Object.entries(scores)) {
+          const row = document.createElement('tr');
+
+          const nameCell = document.createElement('td');
+          nameCell.textContent = name;
+
+          const scoreCell = document.createElement('td');
+          scoreCell.textContent = score;
+
+          row.appendChild(nameCell);
+          row.appendChild(scoreCell);
+          tableBody.appendChild(row);
+        }
+      } catch (error) {
+        console.error('Error loading scoreboard:', error);
+      }
+    }
+
+    // Načtení tabulky při načtení stránky
+    document.addEventListener('DOMContentLoaded', loadScoreboard);
+  </script>
   </section>
  <section id="scoreboard" class="distinctive">
     <a href="#top" class="close-button distinctive-color">&#xd7;</a>
