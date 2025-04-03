@@ -17,9 +17,12 @@ export default {
     // Zpracování POST požadavků na endpoint /save-score
     if (request.method === 'POST' && url.pathname === '/save-score') {
       try {
+        console.log('POST request received'); // Ladící výstup
         const { name, score } = await request.json();
+        console.log('Received data:', { name, score }); // Ladící výstup
 
         if (!name || typeof score !== 'number') {
+          console.log('Invalid data'); // Ladící výstup
           return new Response('Invalid data', {
             status: 400,
             headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
@@ -28,13 +31,14 @@ export default {
 
         // Uložení dat do KV Storage
         await env['name-database'].put(name, JSON.stringify({ score }));
+        console.log('Data saved to KV:', { name, score }); // Ladící výstup
 
         return new Response('Score successfully saved!', {
           status: 200,
           headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
         });
       } catch (error) {
-        console.error('Error saving score:', error);
+        console.error('Error saving score:', error); // Ladící výstup
         return new Response('Failed to save score', {
           status: 500,
           headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
