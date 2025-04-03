@@ -439,7 +439,7 @@
         // odpočet se spustí při zadání prvního znaku hry
         if (!timerStarted && newVal.length > 0) {
           timerStarted = true;
-          let timeLeft = 10000; // počáteční čas v milisekundách (30 sekund) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          let timeLeft = 20000; // počáteční čas v milisekundách (20 sekund)
           const formatTime = (time) => {
             const seconds = Math.floor(time / 1000);
             const milliseconds = Math.floor((time % 1000) / 10); // uvedení sekund
