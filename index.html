@@ -538,9 +538,10 @@
               score: playerScore,
             }),
           });
-  
+
           if (response.ok) {
             console.log('Score successfully saved!');
+            loadScoreboard(); // Dynamicky aktualizuje tabulku po odeslání skóre
           } else {
             console.error('Failed to save score:', response.statusText);
           }
