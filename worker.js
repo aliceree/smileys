@@ -7,20 +7,32 @@ export default {
         const { name, score } = await request.json();
 
         if (!name || typeof score !== 'number') {
-          return new Response('Invalid data', { status: 400 });
+          return new Response('Invalid data', {
+            status: 400,
+            headers: { 'Access-Control-Allow-Origin': '*' },
+          });
         }
 
         // Uložení dat do KV Storage
         await env['name-database'].put(name, JSON.stringify({ score }));
 
-        return new Response('Score successfully saved!', { status: 200 });
+        return new Response('Score successfully saved!', {
+          status: 200,
+          headers: { 'Access-Control-Allow-Origin': '*' },
+        });
       } catch (error) {
         console.error('Error saving score:', error);
-        return new Response('Failed to save score', { status: 500 });
+        return new Response('Failed to save score', {
+          status: 500,
+          headers: { 'Access-Control-Allow-Origin': '*' },
+        });
       }
     }
 
-    return new Response('Not Found', { status: 404 });
+    return new Response('Not Found', {
+      status: 404,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+    });
   },
 };
 
