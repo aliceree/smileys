@@ -7,7 +7,7 @@ export default {
       return new Response(null, {
         status: 204,
         headers: {
-          'Access-Control-Allow-Origin': 'https://smilecters.pages.dev',
+          'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'POST, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type',
         },
@@ -17,31 +17,27 @@ export default {
     // Zpracování POST požadavků na endpoint /save-score
     if (request.method === 'POST' && url.pathname === '/save-score') {
       try {
-        console.log('POST request received'); // Ladící výstup
         const { name, score } = await request.json();
-        console.log('Received data:', { name, score }); // Ladící výstup
 
         if (!name || typeof score !== 'number') {
-          console.log('Invalid data'); // Ladící výstup
           return new Response('Invalid data', {
             status: 400,
-            headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
+            headers: { 'Access-Control-Allow-Origin': '*' },
           });
         }
 
         // Uložení dat do KV Storage
         await env['name-database'].put(name, JSON.stringify({ score }));
-        console.log('Data saved to KV:', { name, score }); // Ladící výstup
 
         return new Response('Score successfully saved!', {
           status: 200,
-          headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
+          headers: { 'Access-Control-Allow-Origin': '*' },
         });
       } catch (error) {
-        console.error('Error saving score:', error); // Ladící výstup
+        console.error('Error saving score:', error);
         return new Response('Failed to save score', {
           status: 500,
-          headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
+          headers: { 'Access-Control-Allow-Origin': '*' },
         });
       }
     }
@@ -49,7 +45,7 @@ export default {
     // Vrácení chyby pro všechny ostatní požadavky
     return new Response('Not Found', {
       status: 404,
-      headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
+      headers: { 'Access-Control-Allow-Origin': '*' },
     });
   },
 };
