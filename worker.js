@@ -76,26 +76,3 @@ export default {
     });
   },
 };
-
-async function sendScoreToKV(playerName, playerScore) {
-  try {
-    const response = await fetch('https://smilecters-backend.al-borovickova.workers.dev/save-score', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: playerName,
-        score: playerScore,
-      }),
-    });
-
-    if (response.ok) {
-      console.log('Score successfully saved!');
-    } else {
-      console.error('Failed to save score:', response.statusText);
-    }
-  } catch (error) {
-    console.error('Error while sending score:', error);
-  }
-}
