@@ -1,5 +1,4 @@
 name = "smilecters"
-type = "javascript"
 account_id = "12adc4f2f6e755f1daf67b3038c3d6a5"
 workers_dev = true
 main = "worker.js"
