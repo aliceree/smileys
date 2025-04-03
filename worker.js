@@ -2,7 +2,19 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Zpracování požadavků na endpoint /save-score
+    // Zpracování OPTIONS požadavků (preflight requests)
+    if (request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          'Access-Control-Allow-Origin': 'https://smilecters.pages.dev',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      });
+    }
+
+    // Zpracování POST požadavků na endpoint /save-score
     if (request.method === 'POST' && url.pathname === '/save-score') {
       try {
         const { name, score } = await request.json();
@@ -10,7 +22,7 @@ export default {
         if (!name || typeof score !== 'number') {
           return new Response('Invalid data', {
             status: 400,
-            headers: { 'Access-Control-Allow-Origin': '*' },
+            headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
           });
         }
 
@@ -19,13 +31,13 @@ export default {
 
         return new Response('Score successfully saved!', {
           status: 200,
-          headers: { 'Access-Control-Allow-Origin': '*' },
+          headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
         });
       } catch (error) {
         console.error('Error saving score:', error);
         return new Response('Failed to save score', {
           status: 500,
-          headers: { 'Access-Control-Allow-Origin': '*' },
+          headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
         });
       }
     }
@@ -33,7 +45,7 @@ export default {
     // Vrácení chyby pro všechny ostatní požadavky
     return new Response('Not Found', {
       status: 404,
-      headers: { 'Access-Control-Allow-Origin': '*' },
+      headers: { 'Access-Control-Allow-Origin': 'https://smilecters.pages.dev' },
     });
   },
 };
