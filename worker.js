@@ -76,3 +76,31 @@ export default {
     });
   },
 };
+
+async function loadScores() {
+  try {
+    const response = await fetch('https://smilecters-backend.al-borovickova.workers.dev/get-scores');
+    if (response.ok) {
+      const scores = await response.json();
+      console.log('Scores received from backend:', scores); // Ladící výstup
+
+      // Najde seznam skóre
+      const scoreboard = document.getElementById('scoreboard');
+      scoreboard.innerHTML = ''; // Vyčistí pouze seznam skóre
+
+      // Seřadí skóre podle hodnoty (od nejvyššího po nejnižší)
+      const sortedScores = Object.entries(scores).sort(([, a], [, b]) => b.score - a.score);
+
+      // Vytvoří seznam skóre
+      sortedScores.forEach(([name, { score }]) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${name}: ${score}`;
+        scoreboard.appendChild(listItem);
+      });
+    } else {
+      console.error('Failed to load scores:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error while loading scores:', error);
+  }
+}
