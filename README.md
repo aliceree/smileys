@@ -18,6 +18,7 @@
 | 2   |  odpočet času + přičítání bodů
 | 1   |  zastavení odpočtu při odchodu, zadávání jména, ovládání klávesami s, g, a b
 | 8   |  nastavení KV (ukládání hráčova jména a zobrazování na scoreboard)
+| 1.5 |  čištění kódů a úprava komentářů
 
 odkazy:
 https://smilecters.pages.dev
