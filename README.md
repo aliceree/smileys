@@ -28,3 +28,4 @@ https://specificity.keegan.st
 nevyřešené úkoly:
 omezit množství znaků hráčova jména
 znemožnit přepisovat výsledek stejným jménem
+úprava vyskakovacího okna do stylu hry
