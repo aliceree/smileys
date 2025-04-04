@@ -514,9 +514,6 @@
         console.error('Error while sending score:', error);
       }
     }
-
-    // načtení tabulky při načtení stránky
-    document.addEventListener('DOMContentLoaded', loadScoreboard);
    </script>
   <div id="timer">timer: 20:00</div>
   </section>
@@ -525,8 +522,6 @@
     <h1>scoreboard</h1>
   <body>
     <script> 
-
-  
       // Načtení tabulky při načtení stránky
       document.addEventListener('DOMContentLoaded', loadScoreboard);
       async function sendScoreToKV(playerName, playerScore) {
