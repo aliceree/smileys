@@ -169,7 +169,7 @@
     
     input[name="answer"] {
       font-family: 'Courier New', monospace; /* font na Courier New */
-      color: #ffffff; /* bílá barva zadávaného textu */
+      color: var(--active-color); /* bílá barva zadávaného textu */
       background-color: #000000; /* černé pozadí inputu */
       border: 1px solid rgb(255, 0, 244); /* růžový rámeček s plnou (solid) čárou */
       border-radius: 5px; /* zaoblené rohy rámečku */
@@ -199,14 +199,14 @@
       background-color: transparent;
       color: var(--active-color); /* barva textu */
       padding: 1rem 0; /* odsazení od spodní části stránky */
-      width: 100%; /* Zabírá celou šířku stránky */
+      width: 100%; /* zabírá celou šířku stránky */
       position: absolute; /* umístění patičky na spodní okraj viditelné části stránky */
       bottom: 0; /* patička je připevněna ke spodnímu okraji */
     }
     
     footer img {
       width: 100px; /* nastaví šířku obrázku na 100px */
-      height: auto; /* Výška se přizpůsobí šířce pro zachování poměru stran */
+      height: auto; /* výška se přizpůsobí šířce pro zachování poměru stran */
     }
     
     #highlighted-symbol {
@@ -222,7 +222,7 @@
       stroke-width: 1px; /* tloušťka obrysu */
     }
     
-    /* stylování svg */
+    /* stylování klávesnic (svg) */
     .st0 {
       fill: #ff00f4;
       font-family: CourierNewPSMT, 'Courier New';
@@ -260,53 +260,53 @@
     #game {
       display: flex;
       flex-direction: column;
-      justify-content: center; /* Vertikální zarovnání na střed */
-      align-items: center; /* Horizontální zarovnání na střed */
-      min-height: 100vh; /* Výška sekce je 100 % výšky obrazovky */
-      position: relative; /* Umožní umístění časovače dole */
+      justify-content: center; /* vertikální zarovnání na střed */
+      align-items: center; /* horizontální zarovnání na střed */
+      min-height: 100vh; /* výška sekce je 100 % výšky obrazovky */
+      position: relative; /* umožní umístění časovače dole */
     }
 
     .input-container {
       display: flex;
-      flex-direction: row; /* Zarovná smajlík a vstupní pole vedle sebe */
-      align-items: center; /* Vertikální zarovnání na střed */
-      gap: 1rem; /* Mezera mezi smajlíkem a vstupním polem */
+      flex-direction: row; /* zarovnání smajlíka a vstupního pole vedle sebe */
+      align-items: center; /* vertikální zarovnání na střed */
+      gap: 1rem; /* mezera mezi smajlíkem a vstupním polem */
     }
 
     #timer {
       position: absolute;
-      bottom: 1rem; /* Umístí časovač 1rem od spodního okraje */
-      font-size: 1.2rem; /* Velikost textu časovače */
-      color: #ffffff; /* Barva textu časovače */
+      bottom: 1rem; /* umístění časovače 1rem od spodního okraje */
+      font-size: 1.2rem; /* velikost textu časovače */
+      color: var(--active-color); /* barva textu časovače */
     }
 
     /* stylování scoreboard */
     #scoreboard-table {
-      width: 50%; /* Tabulka zabírá celou šířku sekce */
-      border-collapse: collapse; /* Odstraní mezery mezi buňkami */
-      margin: 0 auto; /* Horizontálně vycentruje tabulku */
-      table-layout: fixed; /* Umožní pevné rozložení šířek sloupců */
+      width: 50%; /* tabulka zabírá polovinu šířky sekce #scoreboard */
+      border-collapse: collapse; /* odstranění mezery mezi buňkami */
+      margin: 0 auto; /* horizontální vycentrování tabulky */
+      table-layout: fixed; /* pevné rozložení šířek sloupců */
     }
 
     #scoreboard-table tbody {
-      padding: 1rem 1rem; /* Přidá odsazení: 0.5rem nahoře/dole, 1rem vlevo/vpravo */
-      line-height: 1.5rem; /* Zvýšení výšky řádku na 2rem */
-      text-align: left; /* Zarovná text vlevo */
-      vertical-align: middle; /* Vertikální zarovnání textu na střed */
+      padding: 1rem 1rem; /* přidání odsazení: 1em nahoře/dole, 1rem vlevo/vpravo */
+      line-height: 1.5rem; /* zvýšení výšky řádku na 1.5rem */
+      text-align: left; /* zarovnání textu vlevo */
+      vertical-align: middle; /* vertikální zarovnání textu na střed */
     }
 
     #scoreboard-table td:first-child {
-      width: 70%; /* První sloupec (jména) zabírá 70 % šířky tabulky */
+      width: 70%; /* první sloupec (jména) zabírá 70 % šířky tabulky */
     }
 
     #scoreboard-table td:last-child {
-      width: 30%; /* Druhý sloupec (skóre) zabírá 30 % šířky tabulky */
+      width: 30%; /* druhý sloupec (skóre) zabírá 30 % šířky tabulky */
     }
     #scoreboard {
-      max-height: 80vh; /* Maximální výška sekce scoreboard na 80 % výšky okna */
-      overflow-y: auto; /* Povolení vertikálního posouvání obsahu */
-      padding-right: 1rem; /* Přidání odsazení pro lepší čitelnost vedle scrollbar */
-      padding-bottom: 1rem; /* Přidání prostoru pod tabulkou */
+      max-height: 80vh; /* maximální výška sekce #scoreboard na 80 % výšky okna */
+      overflow-y: auto; /* povolení vertikálního posouvání obsahu */
+      padding-right: 1rem; /* přidání odsazení pro lepší čitelnost vedle scrollbar */
+      padding-bottom: 1rem; /* přidání prostoru pod tabulkou */
     }
   </style>
 </head>
@@ -316,49 +316,50 @@
     <h1>Shortcut Smileys</h1>
     <nav>
       <script>
-        document.addEventListener('keydown', (event) => { /* pokud uživatel zmáčkne "esc" vrátí se na homepage */
+        // po stisknutí klávesy "esc" návrat na homepage (#top)
+        document.addEventListener('keydown', (event) => {
           if (event.key === 'Escape') {
             window.location.hash = '#top';
             }
         });
-        // Přidání event listeneru pro klávesnici
+        // po stihnutí klávesy "s"/"g" vstup do #shortcuts/#game
         document.addEventListener('keydown', (event) => {
           if (event.key === 's') {
-            window.location.hash = '#shortcuts'; // Přesměrování na sekci #shortcuts
+            window.location.hash = '#shortcuts';
           } else if (event.key === 'g') {
-            window.location.hash = '#game'; // Přesměrování na sekci #game
+            window.location.hash = '#game';
         
-            // Nastavení focusu na vstupní pole po přechodu do sekce #game
+            // po stupu do #game nastavení focusu na vstupní pole
             setTimeout(() => {
               const answerInput = document.querySelector('input[name="answer"]');
               if (answerInput) {
-                answerInput.value = ''; // Vyčistí vstupní pole
-                answerInput.focus(); // Nastaví focus na vstupní pole
+                answerInput.value = ''; // vyčistí vstupní pole
+                answerInput.focus(); // nastaví focus na vstupní pole
               }
-            }, 100); // Zpoždění pro zajištění, že stránka přejde do sekce #game
-          } else if (event.key === 'b') {
-            window.location.hash = '#scoreboard'; // Přesměrování na sekci #scoreboard
+            }, 100); // zpoždění pro zajištění, že stránka přejde do sekce #game
+          } else if (event.key === 'b') { // po stisknutí klávesy "b" přechod do #scoreboard
+            window.location.hash = '#scoreboard';
           }
         });
 
         async function loadScoreboard() {
           try {
-            // Načtení dat z KV přes API endpoint
+            // načtení dat z KV přes API endpoint
             const response = await fetch('https://smilecters-backend.al-borovickova.workers.dev/get-scores');
             if (!response.ok) {
               throw new Error('Failed to fetch scores');
             }
 
-            const scores = await response.json(); // Data jsou ve formátu JSON
+            const scores = await response.json(); // data jsou ve formátu JSON
             const tableBody = document.querySelector('#scoreboard-table tbody');
 
-            // Vyčištění tabulky před přidáním nových dat
+            // vyčištění tabulky před přidáním nových dat
             tableBody.innerHTML = '';
 
-            // Převod objektu na pole a seřazení podle skóre (od nejvyššího po nejnižší)
+            // převod objektu na pole a seřazení podle skóre (od nejvyššího po nejnižší)
             const sortedScores = Object.entries(scores).sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
 
-            // Iterace přes seřazená data a vytvoření řádků tabulky
+            // iterace přes seřazená data a vytvoření řádků tabulky
             for (const [name, score] of sortedScores) {
               const row = document.createElement('tr');
 
@@ -401,7 +402,7 @@
 
       document.querySelector('label[for=answer]').textContent = `${ currentQuestion }`; // nastaví náhodného smajlíka jako první zadání
 
-      // Nastavení zaměření na vstupní pole a vyčištění pole při otevření sekce hry
+      // po otevření #game vyčistí pole a nastaví na něj focus
       document.querySelector('a[href="#game"]').addEventListener('click', (event) => {
         setTimeout(() => {
           const answerInput = document.querySelector('input[name="answer"]');
@@ -412,14 +413,14 @@
         }, 100); // zpoždění, aby stránka stihla přejít do sekce #game
       });
 
-      // Zastavení a vynulování odpočtu při odchodu ze sekce #game
+      // při odchodu z #game zastaví a vynuluje odpočet
       const stopTimer = () => {
         if (timerInterval) {
           clearInterval(timerInterval); // zastaví odpočet
           timerInterval = null;
-          timerStarted = false; // resetuje stav odpočtu
+          timerStarted = false; // vynuluje odpočet
           const timerElement = document.getElementById('timer');
-          timerElement.textContent = 'timer: 30:00'; // resetuje časovač na výchozí hodnotu
+          timerElement.textContent = 'timer: 30:00'; // resetuje timer na výchozí hodnotu
         }
       };
 
@@ -442,7 +443,7 @@
           let timeLeft = 20000; // počáteční čas v milisekundách (20 sekund)
           const formatTime = (time) => {
             const seconds = Math.floor(time / 1000);
-            const milliseconds = Math.floor((time % 1000) / 10); // uvedení sekund
+            const milliseconds = Math.floor((time % 1000) / 10); // sekundy
             return `timer: ${seconds}:${milliseconds.toString().padStart(2, '0')}`;
           };
           const timerElement = document.getElementById('timer');
@@ -454,13 +455,13 @@
 
             if (timeLeft <= 0) {
               clearInterval(timerInterval); // zastaví odpočet
-              timerElement.textContent = 'timer: 0:00'; // nastaví čas na 0
+              timerElement.textContent = 'timer: 0:00'; // nastaví čas na 0:00
             
-              // Zobrazí prompt pro zadání jména
+              // prompt pro zadání jména po skončení #game
               const playerName = prompt(`You have finished the game! If you want to save your score of ${score} points, write your name:`);
             
               if (playerName) {
-                // Odeslání jména a skóre do Workers KV
+                // odeslání jména a skóre do Workers KV
                 sendScoreToKV(playerName, score);
               }
             
@@ -488,9 +489,9 @@
         }
       });
 
-    // Funkce pro odeslání jména a skóre do Workers KV
+    // funkce pro odeslání jména a skóre do Workers KV
     async function sendScoreToKV(playerName, playerScore) {
-      console.log('Sending score to KV:', { playerName, playerScore }); // Ladící výstup
+      console.log('Sending score to KV:', { playerName, playerScore });
       try {
         const response = await fetch('https://smilecters-backend.al-borovickova.workers.dev/save-score', {
           method: 'POST',
@@ -502,21 +503,7 @@
             score: playerScore,
           }),
         });
-
-        if (response.ok) {
-          console.log('Score successfully saved!');
-          loadScoreboard(); // Dynamicky aktualizuje tabulku po odeslání skóre
-        } else {
-          console.error('Failed to save score:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error while sending score:', error);
-      }
-    }
-
-    // Načtení tabulky při načtení stránky
-    document.addEventListener('DOMContentLoaded', loadScoreboard);
-    </script>
+   </script>
   <div id="timer">timer: 20:00</div>
   </section>
  <section id="scoreboard" class="distinctive">
@@ -524,22 +511,7 @@
     <h1>scoreboard</h1>
   <body>
     <script> 
-      // Funkce pro odeslání jména a skóre do Workers KV
-      async function sendScoreToKV(playerName, playerScore) {
-        console.log('Sending score to KV:', { playerName, playerScore }); // Ladící výstup
-        try {
-          const response = await fetch('https://smilecters-backend.al-borovickova.workers.dev/save-score', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name: playerName,
-              score: playerScore,
-            }),
-          });
-
-          if (response.ok) {
+        if (response.ok) {
             console.log('Score successfully saved!');
             loadScoreboard(); // Dynamicky aktualizuje tabulku po odeslání skóre
           } else {
