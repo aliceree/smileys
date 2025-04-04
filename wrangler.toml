@@ -3,7 +3,7 @@ account_id = "12adc4f2f6e755f1daf67b3038c3d6a5"
 workers_dev = true
 compatibility_date = "2025-04-03"
 
-main = "worker.js" # Cesta k vašemu Worker skriptu
+main = "worker.js" # Cesta k Worker skriptu
 
 kv_namespaces = [
   { binding = "name-database", id = "0c5793104d3846b1aed1d2a9451886be" }

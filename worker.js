@@ -2,7 +2,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Zpracování OPTIONS požadavků (preflight requests)
+    // zpracování OPTIONS požadavků (preflight requests)
     if (request.method === 'OPTIONS') {
       return new Response(null, {
         status: 204,
@@ -14,7 +14,7 @@ export default {
       });
     }
 
-    // Zpracování POST požadavků na endpoint /save-score
+    // zpracování POST požadavků na endpoint /save-score
     if (request.method === 'POST' && url.pathname === '/save-score') {
       try {
         const { name, score } = await request.json();
@@ -26,7 +26,7 @@ export default {
           });
         }
 
-        // Uložení dat do KV Storage
+        // uložení dat do KV Storage
         await env['name-database'].put(name, JSON.stringify({ score }));
 
         return new Response('Score successfully saved!', {
@@ -42,22 +42,22 @@ export default {
       }
     }
 
-    // Zpracování GET požadavků na endpoint /get-scores
+    // zpracování GET požadavků na endpoint /get-scores
     if (url.pathname === '/get-scores') {
       try {
-        const scores = await env['name-database'].list(); // Načtení všech klíčů a hodnot z KV
+        const scores = await env['name-database'].list(); // načtení všech klíčů a hodnot z KV
         const result = {};
 
         for (const key of scores.keys) {
           const value = await env['name-database'].get(key.name);
-          result[key.name] = JSON.parse(value).score; // Předpokládáme, že hodnota je JSON s klíčem `score`
+          result[key.name] = JSON.parse(value).score; // hodnotou je JSON s klíčem "score"
         }
 
         return new Response(JSON.stringify(result), {
           status: 200,
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*', // Povolení požadavků z jakéhokoli původu
+            'Access-Control-Allow-Origin': '*', // povolení požadavků z jakéhokoli původu
           },
         });
       } catch (error) {
@@ -69,7 +69,7 @@ export default {
       }
     }
 
-    // Vrácení chyby pro všechny ostatní požadavky
+    // vrácení chyby pro všechny ostatní požadavky
     return new Response('Not Found', {
       status: 404,
       headers: { 'Access-Control-Allow-Origin': '*' },
