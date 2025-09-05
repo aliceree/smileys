@@ -13,8 +13,15 @@ A didactic game for practicing typing special characters on the Czech QWERTZ key
   - Switch between sections using keys: `s` (Shortcuts), `g` (Game), `b` (Scoreboard)  
   - Return to the main menu: `Esc` or click the cross in the top-right corner  
 
-- **Goal of the Game**  
-  Learn to type special characters (e.g., `Shift + <key>`, `Ctrl + Alt + <key>`) quickly and accurately, with support for the Czech QWERTZ layout.
+## Run the Game Locally
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/tvoje-username/smileys.git
+   cd smileys
+
+   2.	Open the file index.html in your browser.
+👉 The game is fully static – no server required.
 
 | hrs | note
 | --- | ---
