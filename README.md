@@ -52,6 +52,16 @@ Future development could focus on features that would **enhance feedback and lea
 
 These improvements would provide players with deeper insights into their performance, support self-reflection, and keep motivation high.
 
+## 🐞 Known Issues / To-Do
+
+The current version is fully playable and tested in Chrome.  
+Some improvements and fixes are planned:
+
+- Limit the maximum length of player names  
+- Prevent overwriting scores with the same name  
+- Restyle the popup window to match the game’s design  
+- Refresh the scoreboard automatically when pressing **b**  
+
 | hrs | note
 | --- | ---
 | 1   |  Danielkův úvod
