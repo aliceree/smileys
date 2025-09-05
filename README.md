@@ -2,6 +2,8 @@
 
 A didactic game for practicing typing special characters on the Czech QWERTZ keyboard. [Try it online](https://smilecters.pages.dev/#top) (best on Google Chrome 138.0.7204.185).
 
+![Game demo](demo.gif)
+
 ## What the Game Does
 
 - **Sections**  
