@@ -35,8 +35,8 @@ A didactic game for practicing typing special characters on the Czech QWERTZ key
 
 ### Backend & Deployment
 - **Cloudflare Workers** + **Workers KV** for storing scores  
-  - `POST /save-score` – saves a player’s score  
-  - `GET /get-scores` – returns results in JSON for the Scoreboard  
+  - `POST /save-score` saves a player’s score  
+  - `GET /get-scores` returns results in JSON for the Scoreboard  
 - **CORS** support & handling of `OPTIONS` requests for smooth communication  
 - **wrangler.toml:** Worker configuration (service name, Cloudflare account, KV namespace)  
 - **Cloudflare Pages:** static hosting, auto-deployment on every GitHub push  
@@ -59,34 +59,24 @@ Some improvements and fixes are planned:
 - Restyle the popup window to match the game’s design  
 - Refresh the scoreboard automatically when pressing **b**  
 
-| hrs | note
-| --- | ---
-| 1   |  Danielkův úvod
-| 0.3 |  nastavování GitHub
-| 2   |  náhodné (nekonečné) generování smajlíků a zbarvení správné odpovědi do růžova
-| 2   |  stylování homepage a fontu a pozadí
-| 2   |  rozdělení na smilecters.html, game.html, smilecters.css a přebarvení input dle designu
-| 5   |  předelání dle designu na fakan.cz (zpět do 1 HTML dokumentu), kontrola kódu a pochopení jeho principu
-| 1.5 |  křížek (close button) + vymýšlení klávesnice
-| 2   |  Close Button jako speciální znak, funkčnost tlačítka esc; zákaz kopírování smajlíků, tvorba GPTs
-| 2   |  tvorba klávesnice v .ai a vkládání .svg
-| 2.5 |  sekce shortcuts: zmenšování klavesnice, návod na napsání znaků ?, ! a zvýraznění kláves
-| 3   |  sekce shortcuts: zvětšování stránky, přidávání nových klávesnic
-| 1   |  vytváření databáze smajlíků
-| 1   |  Danielkovo vysvětlení jak funguje Cloudglare KV a vytvoření Cloudflare Page "smilecters"
-| 2   |  odpočet času + přičítání bodů
-| 1   |  zastavení odpočtu při odchodu, zadávání jména, ovládání klávesami s, g, a b
-| 8   |  nastavení KV (ukládání hráčova jména a zobrazování na scoreboard)
-| 1.5 |  čištění kódů a úprava komentářů
+## ⏱Development Log
 
-odkazy:
-https://smilecters.pages.dev
-https://dash.cloudflare.com/12adc4f2f6e755f1daf67b3038c3d6a5/pages/view/smilecters
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fencedframe
-https://specificity.keegan.st
-
-nevyřešené úkoly:
-omezit množství znaků hráčova jména
-znemožnit přepisovat výsledek stejným jménem
-úprava vyskakovacího okna do stylu hry
-při stisknutí klávesy b znova načíst scoreboard
+| hrs | note |
+|-----|------|
+| 1   | Dan’s introduction |
+| 0.3 | GitHub setup |
+| 2   | Random (infinite) smiley generation and coloring correct answers pink |
+| 2   | Styling homepage, fonts, and background |
+| 2   | Splitting into `smilecters.html`, `game.html`, `smilecters.css` and recoloring input fields according to design |
+| 5   | Redesign based on fakan.cz (back to single HTML document), code review and understanding its logic |
+| 1.5 | Close button + keyboard design |
+| 2   | Close button as a special character, ESC key functionality; disabling copy of smileys, GPT experiments |
+| 2   | Keyboard design in .ai and embedding .svg |
+| 2.5 | Shortcuts section: shrinking keyboard, tutorial for typing `?`, `!`, highlighting keys |
+| 3   | Shortcuts section: enlarging page, adding new keyboards |
+| 1   | Creating a smiley database |
+| 1   | Dan’s explanation of Cloudflare KV and setup of Cloudflare Page “smilecters” |
+| 2   | Timer countdown + score increment |
+| 1   | Pausing countdown on exit, name input, keyboard navigation with s, g, b |
+| 2   | KV setup (saving player names and displaying on scoreboard) |
+| 1.5 | Code cleanup and comment updates |
