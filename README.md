@@ -24,11 +24,11 @@ A didactic game for practicing typing special characters on the Czech QWERTZ key
 ## 🛠Technologies & Architecture
 
 ### Frontend
-- **HTML, CSS, JavaScript** – everything in a single `index.html`, no external libraries  
-- **CSS** – Flexbox / Grid layout, CSS variables (colors, hover states)  
-- **HTML** – semantic elements (`<main>`, `<section>`, `<footer>`)  
-- **Navigation** – hash-based anchors (`#shortcuts`, `#game`, `#scoreboard`)  
-- **JavaScript**:
+- **HTML, CSS, JavaScript:** everything in a single `index.html`, no external libraries  
+- **CSS:** Flexbox / Grid layout, CSS variables (colors, hover states)  
+- **HTML:** semantic elements (`<main>`, `<section>`, `<footer>`)  
+- **Navigation:** hash-based anchors (`#shortcuts`, `#game`, `#scoreboard`)  
+- **JavaScript:**
   - Game logic (character prompts, scoring, DOM updates)  
   - Keyboard shortcuts (`s`, `g`, `b`, `Esc`)  
   - Dynamic content switching  
@@ -38,8 +38,8 @@ A didactic game for practicing typing special characters on the Czech QWERTZ key
   - `POST /save-score` – saves a player’s score  
   - `GET /get-scores` – returns results in JSON for the Scoreboard  
 - **CORS** support & handling of `OPTIONS` requests for smooth communication  
-- **wrangler.toml** – Worker configuration (service name, Cloudflare account, KV namespace)  
-- **Cloudflare Pages** – static hosting, auto-deployment on every GitHub push  
+- **wrangler.toml:** Worker configuration (service name, Cloudflare account, KV namespace)  
+- **Cloudflare Pages:** static hosting, auto-deployment on every GitHub push  
 
 ## Future Improvements
 
