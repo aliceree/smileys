@@ -57,7 +57,7 @@ Some improvements and fixes are planned:
 - Limit the maximum length of player names  
 - Prevent overwriting scores with the same name  
 - Restyle the popup window to match the game’s design  
-- Refresh the scoreboard automatically when pressing **b**  
+- Refresh the scoreboard automatically when pressing `b` 
 
 ## Development Log
 
