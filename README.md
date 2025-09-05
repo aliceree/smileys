@@ -43,16 +43,13 @@ A didactic game for practicing typing special characters on the Czech QWERTZ key
 
 ## Future Improvements
 
-The application **Shortcut Smileys** is already tested, fully functional, and ready for classroom use.  
 Future development could focus on features that would **enhance feedback and learning effectiveness**, such as:
 
 - **Detailed feedback**: percentage of correct answers, time spent on each item, or a progress bar showing advancement.  
 - **Smart hints**: activated when the player repeatedly makes mistakes or hesitates, e.g. by highlighting the correct keys or showing a short animation.  
 - **Gradual difficulty levels**: from simple emoticons (like `:-)`), to more complex combinations (`@_%`), up to advanced characters (`#_€`).  
 
-These improvements would provide players with deeper insights into their performance, support self-reflection, and keep motivation high.
-
-## 🐞 Known Issues / To-Do
+## Known Issues / To-Do
 
 The current version is fully playable and tested in Chrome.  
 Some improvements and fixes are planned:
