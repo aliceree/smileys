@@ -4,10 +4,10 @@ A didactic game for practicing typing special characters on the Czech QWERTZ key
 
 ## What the Game Does
 
-- **Modes**  
-  - **Shortcuts** – a list and visualization of keyboard combinations  
-  - **Game** – a playground where you type the correct characters as fast as possible  
-  - **Scoreboard** – a ranking of the best results  
+- **Sections**  
+  - **Shortcuts:** a list and visualization of keyboard combinations  
+  - **Game:** a playground where you type the correct characters as fast as possible  
+  - **Scoreboard:** a ranking of the best results  
 
 - **Controls**  
   - Switch between sections using keys: `s` (Shortcuts), `g` (Game), `b` (Scoreboard)  
