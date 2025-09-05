@@ -19,9 +19,7 @@ A didactic game for practicing typing special characters on the Czech QWERTZ key
    ```bash
    git clone https://github.com/tvoje-username/smileys.git
    cd smileys
-
-   2.	Open the file index.html in your browser.
-👉 The game is fully static – no server required.
+2. Open the file index.html in your browser.
 
 | hrs | note
 | --- | ---
