@@ -59,7 +59,7 @@ Some improvements and fixes are planned:
 - Restyle the popup window to match the game’s design  
 - Refresh the scoreboard automatically when pressing **b**  
 
-## ⏱Development Log
+## Development Log
 
 | hrs | note |
 |-----|------|
@@ -80,3 +80,4 @@ Some improvements and fixes are planned:
 | 1   | Pausing countdown on exit, name input, keyboard navigation with s, g, b |
 | 2   | KV setup (saving player names and displaying on scoreboard) |
 | 1.5 | Code cleanup and comment updates |
+**Total: 31.8 hours**
