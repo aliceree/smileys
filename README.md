@@ -21,7 +21,7 @@ A didactic game for practicing typing special characters on the Czech QWERTZ key
    cd smileys
 2. Open the file index.html in your browser. The game is fully static, no server required.
 
-## 🛠Technologies & Architecture
+## Technologies & Architecture
 
 ### Frontend
 - **HTML, CSS, JavaScript:** everything in a single `index.html`, no external libraries  
