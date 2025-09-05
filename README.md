@@ -1,4 +1,8 @@
-# special smilecters
+# The Shortcut Smileys Game
+
+**Didactic game for training typing special characters on Czech QWERTZ keyboard**
+
+[Try the game online](https://smilecters.pages.dev/#top)
 
 | hrs | note
 | --- | ---
