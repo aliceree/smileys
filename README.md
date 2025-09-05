@@ -64,7 +64,7 @@ Some improvements and fixes are planned:
 | hrs | note |
 |-----|------|
 | 1   | Dan’s introduction |
-| 0.3 | GitHub setup |
+| 0.5 | GitHub setup |
 | 2   | Random (infinite) smiley generation and coloring correct answers pink |
 | 2   | Styling homepage, fonts, and background |
 | 2   | Splitting into `smilecters.html`, `game.html`, `smilecters.css` and recoloring input fields according to design |
@@ -80,5 +80,6 @@ Some improvements and fixes are planned:
 | 1   | Pausing countdown on exit, name input, keyboard navigation with s, g, b |
 | 2   | KV setup (saving player names and displaying on scoreboard) |
 | 1.5 | Code cleanup and comment updates |
+| **32**  | Total |
 
-**Total: 31.8 hours**
+
