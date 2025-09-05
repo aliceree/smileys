@@ -1,6 +1,6 @@
 # The Shortcut Smileys Game
 
-A didactic game for practicing typing special characters on the Czech QWERTZ keyboard. [Try it online](https://smilecters.pages.dev/#top) (best on Google Chrome 138.0.7204.185) or wathch the demo below.
+An educational game for practicing typing special characters on the Czech QWERTZ keyboard. [Try it online](https://smilecters.pages.dev/#top) (best experienced in Google Chrome) or see the demo below.
 
 ![demo](demo.gif)
 
